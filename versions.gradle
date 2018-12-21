@@ -1,0 +1,259 @@
+/**
+ * Shared file between builds so that they can all use the same dependencies and
+ * maven repositories.
+ **/
+ext.deps = [:]
+def versions = [:]
+versions.junit = "4.12"
+versions.mockito = "1.10.8"
+versions.powermock = "1.6.5"
+
+versions.android_gradle_plugin = "3.2.1"
+versions.google_services_plugin = "3.1.1"
+
+versions.rxjava2 = "2.1.3"
+versions.rx_android = "2.0.1"
+versions.rxkotlin = "2.3.0"
+
+versions.kotlin = "1.3.0"
+versions.coroutines = "1.0.1"
+versions.kodein = "5.2.0"
+
+versions.multi_dex = "1.0.2"
+versions.gson = "2.8.1"
+versions.crashlytics = "2.6.8@aar"
+versions.play_services = "11.8.0"
+versions.leak_canary = "1.5.4"
+versions.stetho = "1.5.0"
+versions.roughike_bottombar = "2.3.1"
+versions.expectanim = "1.0.7"
+
+versions.dagger = "2.18"
+versions.assistedinject = "0.3.0"
+versions.epoxy = "3.0.0-rc1"
+
+versions.anko = "0.10.8"
+
+versions.retrofit = "2.3.0"
+versions.okhttp = "3.6.0"
+versions.glide = "4.7.1"
+versions.glide_transformations = "2.0.2"
+versions.timber = "4.5.1"
+
+versions.ktx = "1.0.0-alpha1"
+versions.ktx_nav = "1.0.0-alpha01"
+versions.ktx_lifecycle = "2.0.0-alpha1"
+
+versions.room = "2.1.0-alpha03"
+versions.paging = "2.1.0-rc01"
+versions.support = "1.0.0-alpha1"
+versions.lifecycle = "2.0.0"
+versions.navigation = "1.0.0-alpha05"
+versions.constraint_layout = "1.1.0"
+versions.work_manager = "1.0.0-alpha13"
+
+versions.smarttab = "1.6.1@aar"
+versions.logger = "2.2.0"
+
+versions.espresso = "3.0.1"
+versions.mockwebserver = "3.8.1"
+versions.mockito = "2.7.19"
+versions.mockito_all = "1.10.19"
+versions.junit = "4.12"
+versions.hamcrest = "1.3"
+
+versions.auto_service = "1.0-rc4"
+def deps = [:]
+
+def androidx = [:]
+androidx.appcompat = "androidx.appcompat:appcompat:${versions.support}"
+androidx.cardview = "androidx.cardview:cardview:${versions.support}"
+androidx.material = "com.google.android.material:material:${versions.support}"
+androidx.recyclerview = "androidx.recyclerview:recyclerview:${versions.support}"
+androidx.fragment = "androidx.fragment:fragment:${versions.support}"
+androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
+androidx.work_manager = "android.arch.work:work-runtime:${versions.work_manager}"
+deps.androidx = androidx
+
+def paging = [:]
+paging.common =  "androidx.paging:paging-common:${versions.paging}"
+paging.runtime =  "androidx.paging:paging-runtime:${versions.paging}"
+paging.rx = "androidx.paging:paging-rxjava2:${versions.paging}"
+androidx.paging = paging
+
+def ktx = [:]
+ktx.core = "androidx.core:core-ktx:${versions.ktx}"
+ktx.fragment = "androidx.fragment:fragment-ktx:${versions.ktx}"
+ktx.palette = "androidx.palette:palette-ktx:${versions.ktx}"
+ktx.sqlite = "androidx.sqlite:sqlite-ktx:${versions.ktx}"
+ktx.collection = "androidx.collection:collection-ktx:${versions.ktx}"
+ktx.viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.ktx_lifecycle}"
+ktx.reactive_streams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${versions.ktx_lifecycle}"
+ktx.navigation_common = "android.arch.navigation:navigation-common-ktx:${versions.ktx_nav}"
+ktx.navigation_fragment = "android.arch.navigation:navigation-fragment-ktx:${versions.ktx_nav}"
+ktx.navigation_runtime = "android.arch.navigation:navigation-runtime-ktx:${versions.ktx_nav}"
+ktx.navigation_testing = "android.arch.navigation:navigation-testing-ktx:${versions.ktx_nav}"
+ktx.navigation_ui = "android.arch.navigation:navigation-ui-ktx:${versions.ktx_nav}"
+androidx.ktx = ktx
+
+def room = [:]
+room.runtime =  "androidx.room:room-runtime:${versions.room}"
+room.compiler =  "androidx.room:room-compiler:${versions.room}"
+room.rx = "androidx.room:room-rxjava2:${versions.room}"
+room.testing = "androidx.room:room-testing:${versions.room}"
+androidx.room = room
+
+def lifecycle = [:]
+lifecycle.extension = "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
+lifecycle.reactive_streams = "androidx.lifecycle:lifecycle-reactivestreams:${versions.lifecycle}" // use -ktx for Kotlin
+lifecycle.testing = "androidx.arch.core:core-testing:${versions.lifecycle}"
+androidx.lifecycle = lifecycle
+
+def navigation = [:]
+navigation.fragment = "android.arch.navigation:navigation-fragment:${versions.navigation}"
+navigation.ui = "android.arch.navigation:navigation-ui:${versions.navigation}"
+navigation.plugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
+androidx.navigation = navigation
+
+def rx = [:]
+rx.rxjava2 = "io.reactivex.rxjava2:rxjava:${versions.rxjava2}"
+rx.rxandroid = "io.reactivex.rxjava2:rxandroid:${versions.rx_android}"
+rx.rxkotlin = "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}"
+deps.rx = rx
+
+def kodein = [:]
+kodein.runtime = "org.kodein.di:kodein-di-generic-jvm:$versions.kodein"
+kodein.androidx = "org.kodein.di:kodein-di-framework-android-x:$versions.kodein"
+deps.kodein = kodein
+
+def testing = [:]
+testing.powermock = "org.powermock:powermock:$versions.powermock"
+testing.powermockModule = "org.powermock:powermock-module-junit4:$versions.powermock"
+testing.powermockApi = "org.powermock:powermock-api-mockito:$versions.powermock"
+testing.mockito = "org.mockito:mockito-core:$versions.mockito"
+testing.junit = "junit:junit:$versions.junit"
+testing.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
+testing.mockito_core = "org.mockito:mockito-core:$versions.mockito"
+testing.mockito_all = "org.mockito:mockito-all:$versions.mockito_all"
+testing.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+deps.testing = testing
+
+def facebook = [:]
+facebook.stetho = "com.facebook.stetho:stetho:$versions.stetho"
+deps.facebook = facebook
+
+def play_services = [:]
+play_services.base = "com.google.android.gms:play-services-base:$versions.play_services"
+deps.play_services = play_services
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.rxjava =  "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+deps.retrofit = retrofit
+deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_logging_interceptor}"
+
+def okhttp = [:]
+okhttp.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+okhttp.core =  "com.squareup.okhttp3:okhttp:$versions.okhttp"
+deps.okhttp = okhttp
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+dagger.assisted_inject = "com.squareup.inject:assisted-inject-annotations-dagger2:${versions.assistedinject}"
+dagger.assisted_inject_compiler = "com.squareup.inject:assisted-inject-processor-dagger2:${versions.assistedinject}"
+deps.dagger = dagger
+
+def epoxy = [:]
+epoxy.core =  "com.airbnb.android:epoxy:$versions.epoxy"
+epoxy.processor =  "com.airbnb.android:epoxy-processor:$versions.epoxy"
+epoxy.databinding =  "com.airbnb.android:epoxy-databinding:$versions.epoxy"
+epoxy.paging =  "com.airbnb.android:epoxy-paging:$versions.epoxy"
+deps.epoxy = epoxy
+
+def kotlin = [:]
+kotlin.stdlib_jre7 = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+kotlin.stdlib_jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.extensions_plugin = "org.jetbrains.kotlin:kotlin-android-extensions:$versions.kotlin"
+deps.kotlin = kotlin
+
+def anko = [:]
+anko.commons = "org.jetbrains.anko:anko-commons:$versions.anko"
+anko.design = "org.jetbrains.anko:anko-design:$versions.anko"
+anko.coroutines = "org.jetbrains.anko:anko-coroutines:$versions.anko"
+anko.constraint_layout = "org.jetbrains.anko:anko-constraint-layout:$versions.anko"
+deps.anko = anko
+
+def coroutines = [:]
+coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+coroutines.rx = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${versions.coroutines}"
+coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+kotlin.coroutines = coroutines
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+deps.mockito = mockito
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+def leakcanary = [:]
+leakcanary.android = "com.squareup.leakcanary:leakcanary-android:$versions.leak_canary"
+leakcanary.noop =  "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leak_canary"
+deps.leakcanary = leakcanary
+
+deps.file_tree =  fileTree(include: ['*.jar'], dir: 'libs')
+deps.gson =  "com.google.code.gson:gson:$versions.gson"
+deps.multidex =  "com.android.support:multidex:$versions.multi_dex"
+deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
+deps.glide_transformations = "jp.wasabeef:glide-transformations:$versions.glide_transformations"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
+deps.google_services_plugin = "com.google.gms:google-services:$versions.google_services_plugin"
+deps.roughike_bottombar = "com.roughike:bottom-bar:$versions.roughike_bottombar"
+deps.expectanim = "com.github.florent37:expectanim:$versions.expectanim"
+deps.smarttab = "com.ogaclejapan.smarttablayout:library:$versions.smarttab"
+deps.logger = "com.orhanobut:logger:$versions.logger"
+deps.auto_service = "com.google.auto.service:auto-service:$versions.auto_service"
+
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.compile_sdk = 28
+build_versions.target_sdk = 28
+build_versions.build_tools = "28.0.2"
+ext.build_versions = build_versions
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.mavenCentral()
+    handler.jcenter()
+    handler.maven { url "http://nexus.bsbportal.com/nexus/content/repositories/releases" }
+    handler.maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    handler.maven { url "https://jitpack.io" }
+    handler.maven {
+        url "https://maven.google.com"
+    }
+    handler.maven {
+        url "https://mvnrepository.com/artifact/org.apache.commons/commons-lang3"
+    }
+    handler.maven {
+        url "'https://maven.fabric.io/public'"
+    }
+}
+
+ext.addRepos = this.&addRepos
+ext.addLibraryConfig = this.&addLibraryConfig

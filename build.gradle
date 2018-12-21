@@ -1,0 +1,38 @@
+buildscript {
+    apply from: 'versions.gradle'
+    addRepos(repositories)
+    dependencies {
+        classpath deps.android_gradle_plugin
+        classpath deps.kotlin.plugin
+        classpath deps.google_services_plugin
+    }
+}
+
+// spotless for Kotlin style code formatting
+plugins {
+    id "com.diffplug.gradle.spotless" version "3.14.0"
+}
+
+allprojects {
+    addRepos(repositories)
+}
+
+// increase error limit for compiler; dataBinding can throw hundreds of errors at a time
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "1000"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'com.diffplug.gradle.spotless'
+    spotless {
+        kotlin {
+            target "**/*.kt"
+            ktlint("0.28.0")
+            licenseHeaderFile project.rootProject.file('spotless/copyright.kt')
+        }
+    }
+}

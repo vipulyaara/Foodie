@@ -1,0 +1,104 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        vectorDrawables.useSupportLibrary = true
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    buildTypes {
+        release {
+        }
+        debug {
+
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+    implementation deps.file_tree
+
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.material
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.cardview
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.work_manager
+
+    implementation deps.androidx.paging.common
+    implementation deps.androidx.paging.runtime
+    implementation deps.androidx.paging.rx
+
+    implementation deps.androidx.room.runtime
+    implementation deps.androidx.room.rx
+    kapt deps.androidx.room.compiler
+    implementation deps.androidx.room.testing
+
+    implementation deps.androidx.lifecycle.extension
+    kapt deps.androidx.lifecycle.compiler
+    implementation deps.androidx.lifecycle.reactive_streams
+    implementation deps.androidx.lifecycle.testing
+
+    implementation deps.androidx.ktx.core
+    implementation deps.androidx.ktx.fragment
+    implementation deps.androidx.ktx.palette
+    implementation deps.androidx.ktx.collection
+    implementation deps.androidx.ktx.viewmodel
+    implementation deps.androidx.ktx.reactive_streams
+
+    implementation deps.anko.commons
+    implementation deps.anko.coroutines
+
+    implementation deps.rx.rxjava2
+    implementation deps.rx.rxandroid
+    implementation deps.rx.rxkotlin
+    implementation 'com.cantrowitz:rxbroadcast:2.0.0'
+
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.okhttp.core
+    implementation deps.okhttp.okhttp_logging_interceptor
+
+    implementation deps.gson
+    implementation deps.logger
+
+    implementation deps.kotlin.stdlib_jdk7
+
+    implementation deps.kotlin.coroutines.core
+    implementation deps.kotlin.coroutines.rx
+    implementation deps.kotlin.coroutines.android
+
+    implementation deps.kodein.runtime
+    implementation deps.kodein.androidx
+
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    compileOnly deps.dagger.assisted_inject
+    kapt deps.dagger.compiler
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.assisted_inject_compiler
+
+    implementation deps.timber
+    implementation deps.glide
+    implementation deps.glide_transformations
+
+    ktlint "com.github.shyiko:ktlint:0.28.0"
+    implementation "org.threeten:threetenbp:1.3.7:no-tzdb"
+}
+
+apply from: '../klint-script.gradle'
