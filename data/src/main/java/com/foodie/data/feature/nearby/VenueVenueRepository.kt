@@ -2,8 +2,8 @@ package com.foodie.data.feature.nearby
 
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.Logger
+import com.foodie.data.entities.Venue
 import com.foodie.data.feature.entry.VenueRepository
-import com.foodie.data.model.Venue
 import io.reactivex.Flowable
 import org.kodein.di.generic.instance
 

@@ -2,7 +2,6 @@ package com.foodie.data.entities
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.foodie.data.model.Venue
 import java.util.Objects
 
 /**

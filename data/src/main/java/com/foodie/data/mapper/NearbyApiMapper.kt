@@ -1,10 +1,10 @@
 package com.foodie.data.mapper
 
 import com.foodie.data.entities.NearbyVenueEntry
-import com.foodie.data.model.Venue
+import com.foodie.data.entities.Venue
+import com.foodie.data.entities.toVenue
+import com.foodie.data.entities.toVenueEntry
 import com.foodie.data.model.nearby.NearbyVenuesResponse
-import com.foodie.data.model.toVenue
-import com.foodie.data.model.toVenueEntry
 
 /**
  * @author Vipul Kumar; dated 21/12/18.

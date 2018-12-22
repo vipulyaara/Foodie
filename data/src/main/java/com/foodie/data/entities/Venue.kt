@@ -1,11 +1,9 @@
-package com.foodie.data.model
+package com.foodie.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.foodie.data.entities.BaseEntity
-import com.foodie.data.entities.NearbyVenueEntry
 import com.foodie.data.model.nearby.VenueFromResponse
 
 /**
@@ -23,7 +21,7 @@ data class Venue(
     @ColumnInfo(name = "location") var location: String? = null
 ) : BaseEntity
 
-fun VenueFromResponse.toVenue() = com.foodie.data.model.Venue(
+fun VenueFromResponse.toVenue() = Venue(
     venueId = this.id ?: "",
     name = this.name,
     location = this.location?.city

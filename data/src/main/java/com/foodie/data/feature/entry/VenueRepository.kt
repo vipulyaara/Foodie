@@ -1,6 +1,6 @@
 package com.foodie.data.feature.entry
 
-import com.foodie.data.model.Venue
+import com.foodie.data.entities.Venue
 import io.reactivex.Flowable
 
 interface VenueRepository {

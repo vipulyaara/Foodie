@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.foodie.consumer.feature.common.BaseViewModel
+import com.foodie.consumer.feature.common.BaseEntryViewModel
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppCoroutineDispatchers
 import com.foodie.data.data.AppRxSchedulers
@@ -20,7 +20,7 @@ import org.kodein.di.generic.instance
 
 abstract class EntryViewModel<LI : NearbyEntryWithVenue, P : Any>(
     private val pageSize: Int = 50
-) : BaseViewModel() {
+) : BaseEntryViewModel() {
     private val schedulers: AppRxSchedulers by kodeinInstance.instance()
     private val dispatchers: AppCoroutineDispatchers by kodeinInstance.instance()
     abstract val dataSource: DataSource.Factory<Int, LI>

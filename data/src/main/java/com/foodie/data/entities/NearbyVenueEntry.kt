@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.foodie.data.model.Venue
 
 /**
  * @author Vipul Kumar; dated 21/12/18.

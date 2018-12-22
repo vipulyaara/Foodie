@@ -7,7 +7,7 @@
 
         <variable
             name="venue"
-            type="com.foodie.data.model.Venue" />
+            type="com.foodie.data.entities.Venue" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,8 +1,10 @@
 package com.foodie.data.data.api
 
+import com.foodie.data.model.detail.VideoDetailResponse
 import com.foodie.data.model.nearby.NearbyVenuesResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -18,4 +20,9 @@ interface FoodieApi {
         @Query("offset") offset: Int?,
         @Query("openNow") openNow: Int?
     ): Call<NearbyVenuesResponse>
+
+    @GET("v2/venues/{venueId}")
+    fun fetchVenuedetail(
+        @Path("venueId") venueId: String?
+    ): Call<VideoDetailResponse>
 }

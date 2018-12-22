@@ -8,6 +8,7 @@ import com.foodie.data.config.di.databaseModule
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.config.di.nearbyModule
 import com.foodie.data.config.di.networkModule
+import com.foodie.data.config.di.venueDetailModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.androidModule
@@ -25,6 +26,7 @@ class FoodieApplication : Application(), KodeinAware {
         import(databaseModule)
         import(networkModule)
         import(nearbyModule)
+        import(venueDetailModule)
     }
 
     // initializes Timber, Stetho, FrameMetrics

@@ -1,6 +1,7 @@
 package com.foodie.consumer.feature.home
 
 import android.os.Bundle
+import com.foodie.consumer.MainActivity
 import com.foodie.consumer.feature.entry.BaseEntryFragment
 import com.foodie.consumer.feature.entry.EntryEpoxyController
 import com.foodie.consumer.itemVenue
@@ -16,6 +17,9 @@ class NearbyVenueFragment :
     BaseEntryFragment<NearbyVenueViewModel>(NearbyVenueViewModel::class.java) {
 
     override fun onItemClicked(item: NearbyEntryWithVenue) {
+        if (activity is MainActivity) {
+            (activity as MainActivity).launchDetailFragment(item.venue.venueId)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +50,11 @@ class NearbyVenueFragment :
                     itemVenue {
                         id(it.venue.venueId)
                         venue(it.venue)
+                        onclickListener { model, parentView, clickedView, position ->
+                            callbacks?.onItemClicked(
+                                it
+                            )
+                        }
                     }
                 }
             }

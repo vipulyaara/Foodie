@@ -5,10 +5,10 @@ import com.foodie.data.data.Logger
 import com.foodie.data.data.api.FoodieApi
 import com.foodie.data.data.api.RetrofitRunner
 import com.foodie.data.entities.NearbyVenueEntry
+import com.foodie.data.entities.Venue
 import com.foodie.data.extensions.executeWithRetry
 import com.foodie.data.mapper.NearbyApiMapper
 import com.foodie.data.model.Result
-import com.foodie.data.model.Venue
 import org.kodein.di.generic.instance
 
 /**

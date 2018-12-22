@@ -2,7 +2,7 @@ package com.foodie.data.data.db.daos
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.foodie.data.model.Venue
+import com.foodie.data.entities.Venue
 import io.reactivex.Flowable
 
 @Dao

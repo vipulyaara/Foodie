@@ -4,7 +4,7 @@ import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.db.DatabaseTransactionRunner
 import com.foodie.data.data.db.EntityInserter
 import com.foodie.data.data.db.daos.VenueDao
-import com.foodie.data.model.Venue
+import com.foodie.data.entities.Venue
 import io.reactivex.Flowable
 import org.kodein.di.generic.instance
 
