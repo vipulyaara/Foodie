@@ -1,5 +1,11 @@
 package com.foodie.data.model
 
+/**
+ * @author Vipul Kumar; dated 21/12/18.
+ *
+ * Holder class for data layer that holds data and exception.
+ *
+ */
 sealed class Result<T> {
     open fun get(): T? = null
 

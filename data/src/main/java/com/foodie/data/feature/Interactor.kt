@@ -2,8 +2,6 @@ package com.foodie.data.feature
 
 import androidx.paging.DataSource
 import com.foodie.data.extensions.toFlowable
-import com.foodie.data.model.ErrorResult
-import com.foodie.data.model.Result
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
@@ -19,8 +17,8 @@ interface Interactor<in P> {
     suspend operator fun invoke(executeParams: P)
 }
 
-interface PagingInteractor<T> {
-    fun dataSourceFactory(): DataSource.Factory<Int, T>
+interface PagingInteractor<T, P> {
+    fun dataSourceFactory(params: P): DataSource.Factory<Int, T>
 }
 
 abstract class ChannelInteractor<P, T : Any> : Interactor<P> {
@@ -58,12 +56,11 @@ abstract class SubjectInteractor<P : Any, EP, T> : Interactor<EP> {
 
     final override suspend fun invoke(executeParams: EP) {
         loading.onNext(true)
-        val result = execute(params, executeParams)
-        if (result is ErrorResult) throwError(result.exception)
+        execute(params, executeParams)
         loading.onNext(false)
     }
 
-    protected abstract suspend fun execute(params: P, executeParams: EP): Result<*>
+    protected abstract suspend fun execute(params: P, executeParams: EP)
 
     protected abstract fun createObservable(params: P): Flowable<T>
 

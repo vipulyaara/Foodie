@@ -53,7 +53,7 @@ dependencies {
     implementation deps.androidx.lifecycle.reactive_streams
     implementation deps.androidx.lifecycle.testing
 
-    implementation deps.androidx.ktx.core
+    implementation 'androidx.core:core-ktx:1.1.0-alpha03'
     implementation deps.androidx.ktx.fragment
     implementation deps.androidx.ktx.palette
     implementation deps.androidx.ktx.collection
@@ -84,14 +84,6 @@ dependencies {
 
     implementation deps.kodein.runtime
     implementation deps.kodein.androidx
-
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    compileOnly deps.dagger.assisted_inject
-    kapt deps.dagger.compiler
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.assisted_inject_compiler
 
     implementation deps.timber
     implementation deps.glide

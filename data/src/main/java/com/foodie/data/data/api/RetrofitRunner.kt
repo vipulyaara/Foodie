@@ -1,17 +1,19 @@
-package com.foodie.data.api
+package com.foodie.data.data.api
 
+import com.foodie.data.annotations.UseSingleton
+import com.foodie.data.extensions.bodyOrThrow
+import com.foodie.data.extensions.toException
 import com.foodie.data.mapper.Mapper
 import com.foodie.data.model.ErrorResult
 import com.foodie.data.model.Result
 import com.foodie.data.model.Success
-import com.foodie.data.extensions.bodyOrThrow
-import com.foodie.data.extensions.toException
 import retrofit2.Response
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class RetrofitRunner @Inject constructor() {
+/**
+ * Utility to execute Retrofit calls and map them to returnable entities.
+ */
+@UseSingleton
+class RetrofitRunner {
     suspend fun <T, E> executeForResponse(
         mapper: Mapper<T, E>,
         request: suspend () -> Response<T>

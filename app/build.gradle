@@ -63,12 +63,17 @@ dependencies {
     kapt deps.androidx.room.compiler
     implementation deps.androidx.room.testing
 
+    implementation deps.epoxy.core
+    implementation deps.epoxy.databinding
+    implementation deps.epoxy.paging
+    kapt deps.epoxy.processor
+
     implementation deps.androidx.lifecycle.extension
     kapt deps.androidx.lifecycle.compiler
     implementation deps.androidx.lifecycle.reactive_streams
     implementation deps.androidx.lifecycle.testing
 
-    implementation deps.androidx.ktx.core
+    implementation 'androidx.core:core-ktx:1.1.0-alpha03'
     implementation deps.androidx.ktx.fragment
     implementation deps.androidx.ktx.palette
     implementation deps.androidx.ktx.collection
