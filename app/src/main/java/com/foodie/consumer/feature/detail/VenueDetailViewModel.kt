@@ -2,11 +2,13 @@ package com.foodie.consumer.feature.detail
 
 import com.foodie.consumer.RxLoadingCounter
 import com.foodie.consumer.feature.common.BaseViewModel
+import com.foodie.consumer.feature.common.execute
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppRxSchedulers
 import com.foodie.data.data.Logger
 import com.foodie.data.feature.detail.UpdateVenueDetail
 import com.foodie.data.feature.launchInteractor
+import io.reactivex.rxkotlin.plusAssign
 import org.kodein.di.generic.instance
 
 /**
@@ -21,11 +23,10 @@ class VenueDetailViewModel : BaseViewModel<VenueDetailViewState>() {
     private val loadingState = RxLoadingCounter()
 
     init {
-        updateVenueDetail.observe()
+        disposables += updateVenueDetail.observe()
             .toObservable()
             .subscribeOn(schedulers.io)
-            .subscribe { copy(VenueDetailViewState(it, false)) }
-            .dispose()
+            .execute { copy(VenueDetailViewState(it, false)) }
 
 //        loadingState.observable
 //            .subscribe {

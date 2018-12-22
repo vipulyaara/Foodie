@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.foodie.data.model.detail.VideoDetailResponse
+import com.foodie.data.model.detail.VenueDetailFromResponse
 
 /**
  * @author Vipul Kumar; dated 21/12/18.
@@ -21,4 +21,7 @@ data class VenueDetail(
     @ColumnInfo(name = "location") var location: String? = null
 ) : BaseEntity
 
-fun VideoDetailResponse.toVenueDetail() = VenueDetail()
+fun VenueDetailFromResponse.toVenueDetail() = VenueDetail(
+    venueId = this.id ?: "",
+    name = this.name
+)
