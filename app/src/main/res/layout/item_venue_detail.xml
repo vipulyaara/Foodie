@@ -19,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="196dp"
             android:scaleType="centerCrop"
+            imageUrl="@{venue.photo}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +36,8 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:text="Empire state" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -47,5 +49,20 @@
             android:rating="3"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="4"
+            android:text="@{venue.description}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#7e7e7e"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

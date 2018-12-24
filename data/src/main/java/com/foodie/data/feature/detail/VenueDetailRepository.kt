@@ -3,7 +3,6 @@ package com.foodie.data.feature.detail
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppCoroutineDispatchers
 import com.foodie.data.data.Logger
-import com.foodie.data.entities.VenueDetail
 import com.foodie.data.model.Success
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -18,8 +17,6 @@ class VenueDetailRepository {
     fun observeContentDetail(contentId: String) = localStore.observeVenueDetail(contentId)
 
     suspend fun updateContentDetail(contentId: String) {
-        val local = localStore.getContentDetail(contentId) ?: VenueDetail()
-
         val apiResult = coroutineScope {
             async(dispatchers.io) {
                 dataSource.getVenueDetail(contentId)
@@ -27,9 +24,10 @@ class VenueDetailRepository {
         }
 
         val remote = apiResult.await().let {
-            (it as? Success)?.data ?: local ?: VenueDetail()
+            logger.d("venue detail response $it")
+            (it as? Success)?.data
         }
 
-        localStore.saveVenueDetail(remote)
+        remote?.let { localStore.saveVenueDetail(remote) }
     }
 }

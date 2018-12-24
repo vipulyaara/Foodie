@@ -10,7 +10,7 @@ import io.reactivex.Flowable
  */
 interface EntryDao<EC : Entry, LI : EntryWithVenue<EC>> :
     EntityDao<EC> {
-    fun entriesFlowable(targetId: String, count: Int, offset: Int): Flowable<List<LI>>
-    fun entriesDataSource(targetId: String): DataSource.Factory<Int, LI>
-    fun deleteAll(targetId: String)
+    fun entriesFlowable(count: Int, offset: Int): Flowable<List<LI>>
+    fun entriesDataSource(): DataSource.Factory<Int, LI>
+    fun deleteAll()
 }

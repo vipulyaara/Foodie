@@ -9,7 +9,8 @@ import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppCoroutineDispatchers
 import com.foodie.data.data.AppRxSchedulers
 import com.foodie.data.data.Logger
-import com.foodie.data.entities.NearbyEntryWithVenue
+import com.foodie.data.entities.Entry
+import com.foodie.data.entities.EntryWithVenue
 import com.foodie.data.extensions.distinctUntilChanged
 import com.foodie.data.extensions.toFlowable
 import com.foodie.data.model.Status
@@ -18,14 +19,13 @@ import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-abstract class EntryViewModel<LI : NearbyEntryWithVenue, P : Any>(
+abstract class EntryViewModel<LI : EntryWithVenue<out Entry>>(
     private val pageSize: Int = 50
 ) : BaseEntryViewModel() {
     private val schedulers: AppRxSchedulers by kodeinInstance.instance()
     private val dispatchers: AppCoroutineDispatchers by kodeinInstance.instance()
     abstract val dataSource: DataSource.Factory<Int, LI>
     private val logger: Logger by kodeinInstance.instance()
-    protected lateinit var params: P
 
     private val messages = BehaviorSubject.create<UiResource>()
 
@@ -41,7 +41,7 @@ abstract class EntryViewModel<LI : NearbyEntryWithVenue, P : Any>(
         ).setBoundaryCallback(object : PagedList.BoundaryCallback<LI>() {
             override fun onItemAtEndLoaded(itemAtEnd: LI) {
                 logger.d("Entry onItemAtEndLoaded ${itemAtEnd.relations[0]}")
-                onListScrolledToEnd(params)
+                onListScrolledToEnd()
             }
         }).build().distinctUntilChanged()
     }
@@ -49,12 +49,11 @@ abstract class EntryViewModel<LI : NearbyEntryWithVenue, P : Any>(
     val viewState = LiveDataReactiveStreams
         .fromPublisher(messages.toFlowable())
 
-    fun onListScrolledToEnd(params: P) {
-        logger.d("onListScrolledToEnd $params")
+    fun onListScrolledToEnd() {
         scope.launch {
             sendMessage(UiResource(Status.LOADING_MORE))
             try {
-                callLoadMore(params)
+                callLoadMore()
                 onSuccess()
             } catch (e: Exception) {
                 onError(e)
@@ -63,10 +62,9 @@ abstract class EntryViewModel<LI : NearbyEntryWithVenue, P : Any>(
     }
 
     fun refresh() {
-        logger.d("$this refresh $params")
         scope.launch {
             try {
-                callRefresh(params)
+                callRefresh()
                 onSuccess()
             } catch (e: Exception) {
                 onError(e)
@@ -74,9 +72,9 @@ abstract class EntryViewModel<LI : NearbyEntryWithVenue, P : Any>(
         }
     }
 
-    protected open suspend fun callRefresh(params: P) = Unit
+    protected open suspend fun callRefresh() = Unit
 
-    protected open suspend fun callLoadMore(params: P) = Unit
+    protected open suspend fun callLoadMore() = Unit
 
     private fun onError(t: Throwable) {
         logger.e(t)

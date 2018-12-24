@@ -5,6 +5,7 @@ import com.foodie.data.data.db.DatabaseTransactionRunner
 import com.foodie.data.data.db.EntityInserter
 import com.foodie.data.data.db.FoodieDb
 import com.foodie.data.data.db.RoomTransactionRunner
+import com.foodie.data.data.db.daos.FavoriteVenueEntryDao
 import com.foodie.data.data.db.daos.NearbyVenueEntryDao
 import com.foodie.data.data.db.daos.VenueDao
 import com.foodie.data.data.db.daos.VenueDetailDao
@@ -37,6 +38,10 @@ val databaseModule = Kodein.Module("databaseModule") {
 
     bind<VenueDetailDao>() with singleton {
         instance<FoodieDb>().venueDetailDao()
+    }
+
+    bind<FavoriteVenueEntryDao>() with singleton {
+        instance<FoodieDb>().favoriteVenueEntryDao()
     }
 
     bind<EntityInserter>() with singleton {

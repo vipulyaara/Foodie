@@ -12,6 +12,9 @@ import com.foodie.data.extensions.observeK
 
 /**
  * @author Vipul Kumar; dated 22/12/18.
+ *
+ * Hosts venue detail.
+ * @see [VenueDetailViewModel] and [VenueDetailController].
  */
 class VenueDetailFragment : DataBindingFragment<FragmentVenueDetailBinding>(
     R.layout.fragment_venue_detail

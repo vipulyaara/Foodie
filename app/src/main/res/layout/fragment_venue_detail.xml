@@ -10,5 +10,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/img_hero_2"
+            android:transitionName="quick" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

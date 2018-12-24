@@ -12,6 +12,9 @@ import org.kodein.di.generic.instance
 
 /**
  * @author Vipul Kumar; dated 22/10/18.
+ *
+ * Abstract fragment for dataBinding initialization.
+ * Removes a lot of boilerplate when working with dataBinding.
  */
 abstract class DataBindingFragment<Binding : ViewDataBinding>(
     private val layoutRes: Int

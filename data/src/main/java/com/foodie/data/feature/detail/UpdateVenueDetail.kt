@@ -17,17 +17,17 @@ class UpdateVenueDetail :
 
     private val dispatchers: AppCoroutineDispatchers by kodeinInstance.instance()
     private val schedulers: AppRxSchedulers by kodeinInstance.instance()
-    private val repository: VenueDetailRepository by kodeinInstance.instance()
+    private val venueDetailRepository: VenueDetailRepository by kodeinInstance.instance()
 
     override val dispatcher: CoroutineDispatcher = dispatchers.io
 
     override fun createObservable(params: Param): Flowable<VenueDetail> {
-        return repository.observeContentDetail(params.venueId)
+        return venueDetailRepository.observeContentDetail(params.venueId)
             .subscribeOn(schedulers.io)
     }
 
     override suspend fun execute(params: Param, executeParams: ExecuteParams) {
-        repository.updateContentDetail(params.venueId)
+        venueDetailRepository.updateContentDetail(params.venueId)
     }
 
     data class Param(val venueId: String)

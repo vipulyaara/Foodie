@@ -21,24 +21,23 @@ class LocalNearbyVenueStore {
     private val logger: Logger by kodeinInstance.instance()
 
     fun observeForFlowable(
-        targetId: String,
         count: Int,
         offset: Int
     ): Flowable<List<NearbyEntryWithVenue>> {
-        return nearbyVenueEntryDao.entriesFlowable(targetId, count, offset)
+        return nearbyVenueEntryDao.entriesFlowable(count, offset)
     }
 
-    fun observeForPaging(ll: String): DataSource.Factory<Int, NearbyEntryWithVenue> =
-        nearbyVenueEntryDao.entriesDataSource(ll)
+    fun observeForPaging(): DataSource.Factory<Int, NearbyEntryWithVenue> =
+        nearbyVenueEntryDao.entriesDataSource()
 
-    fun saveVenueEntries(page: Int, targetId: String, entries: List<NearbyVenueEntry>) =
+    fun saveVenueEntries(page: Int, entries: List<NearbyVenueEntry>) =
         transactionRunner {
             val entriesSae = entries.distinctBy { it.venueId }
-            nearbyVenueEntryDao.deletePage(page, targetId)
+            nearbyVenueEntryDao.deletePage(page)
             nearbyVenueEntryDao.insertAll(entriesSae)
         }
 
-    fun deleteAll(ll: String) = nearbyVenueEntryDao.deleteAll(ll)
+    fun deleteAll(ll: String) = nearbyVenueEntryDao.deleteAll()
 
     fun getLastPage(): Int? = nearbyVenueEntryDao.getLastPage()
 }

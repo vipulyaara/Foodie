@@ -1,11 +1,12 @@
 package com.foodie.consumer.feature.entry
 
 import com.airbnb.epoxy.paging.PagingEpoxyController
-import com.foodie.data.entities.NearbyEntryWithVenue
+import com.foodie.data.entities.Entry
+import com.foodie.data.entities.EntryWithVenue
 
-open class EntryEpoxyController :
-    PagingEpoxyController<NearbyEntryWithVenue>() {
-    internal var callbacks: Callbacks<NearbyEntryWithVenue>? = null
+open class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
+    PagingEpoxyController<LI>() {
+    internal var callbacks: Callbacks<LI>? = null
 
     var isLoading = false
         set(value) {
@@ -16,9 +17,10 @@ open class EntryEpoxyController :
         }
 
     interface Callbacks<in LI> {
-        fun onItemClicked(item: LI)
+        fun onItemClicked(viewHolderId: Long, item: LI)
+        fun onItemFavorited(item: LI)
     }
 
-    override fun buildModels(items: MutableList<NearbyEntryWithVenue>) {
+    override fun buildModels(items: MutableList<LI>) {
     }
 }

@@ -9,6 +9,6 @@ import com.foodie.data.model.detail.VideoDetailResponse
  */
 class VenueDetailMapper : Mapper<VideoDetailResponse, VenueDetail> {
     override fun map(from: VideoDetailResponse): VenueDetail {
-        return from.response?.venue?.toVenueDetail() ?: VenueDetail()
+        return from.response?.venue?.toVenueDetail() ?: VenueDetail(venueId = "not available")
     }
 }

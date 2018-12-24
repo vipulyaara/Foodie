@@ -5,6 +5,8 @@ import com.foodie.consumer.itemVenueDetail
 
 /**
  * @author Vipul Kumar; dated 22/12/18.
+ *
+ * Controller to lay out items for [VenueDetailFragment].
  */
 class VenueDetailController : TypedEpoxyController<VenueDetailViewState>() {
     override fun buildModels(data: VenueDetailViewState?) {

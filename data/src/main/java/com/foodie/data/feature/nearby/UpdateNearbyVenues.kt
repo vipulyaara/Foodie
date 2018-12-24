@@ -29,13 +29,11 @@ class UpdateNearbyVenues constructor(
     override val dispatcher: CoroutineDispatcher = dispatchers.io
 
     override fun dataSourceFactory(params: Params): DataSource.Factory<Int, NearbyEntryWithVenue> {
-        return nearbyVenueRepository.observeForPaging(
-            params.ll
-        )
+        return nearbyVenueRepository.observeForPaging()
     }
 
     override fun createObservable(params: Params): Flowable<List<NearbyEntryWithVenue>> {
-        return nearbyVenueRepository.observeForFlowable(params.ll)
+        return nearbyVenueRepository.observeForFlowable()
             .startWith(emptyFlowableList())
             .subscribeOn(schedulers.io)
     }

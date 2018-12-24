@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="48dp">
+        android:padding="24dp">
 
         <TextView
             android:id="@+id/tvHeading"
@@ -22,7 +22,6 @@
             android:id="@+id/tvHeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
             android:text="Order from tasty nearby restaurants"
             app:layout_constraintStart_toStartOf="@+id/tvHeading"
             app:layout_constraintTop_toBottomOf="@+id/tvHeading" />

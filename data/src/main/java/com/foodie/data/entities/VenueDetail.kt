@@ -18,10 +18,12 @@ data class VenueDetail(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") override var id: Long = 0,
     @ColumnInfo(name = "venue_id") var venueId: String = "",
     @ColumnInfo(name = "name") var name: String? = null,
-    @ColumnInfo(name = "location") var location: String? = null
+    @ColumnInfo(name = "photo") var photo: String? = null,
+    @ColumnInfo(name = "description") var description: String? = null
 ) : BaseEntity
 
 fun VenueDetailFromResponse.toVenueDetail() = VenueDetail(
     venueId = this.id ?: "",
-    name = this.name
+    name = this.name,
+    description = this.description
 )

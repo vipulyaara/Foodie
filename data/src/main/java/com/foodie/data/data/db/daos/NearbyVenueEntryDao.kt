@@ -12,24 +12,21 @@ import io.reactivex.Flowable
 abstract class NearbyVenueEntryDao :
     PaginatedEntryDao<NearbyVenueEntry, NearbyEntryWithVenue> {
     @Transaction
-    @Query("SELECT * FROM nearby_venues where ll = :ll ORDER BY page, page_order LIMIT :count OFFSET :offset")
+    @Query("SELECT * FROM nearby_venues ORDER BY page, page_order LIMIT :count OFFSET :offset")
     abstract override fun entriesFlowable(
-        ll: String,
         count: Int,
         offset: Int
     ): Flowable<List<NearbyEntryWithVenue>>
 
     @Transaction
-    @Query("SELECT * FROM nearby_venues where ll = :ll ORDER BY page, page_order")
-    abstract override fun entriesDataSource(
-        ll: String
-    ): DataSource.Factory<Int, NearbyEntryWithVenue>
+    @Query("SELECT * FROM nearby_venues ORDER BY page, page_order")
+    abstract override fun entriesDataSource(): DataSource.Factory<Int, NearbyEntryWithVenue>
 
-    @Query("DELETE FROM nearby_venues WHERE page = :page AND ll = :ll")
-    abstract override fun deletePage(page: Int, ll: String)
+    @Query("DELETE FROM nearby_venues WHERE page = :page")
+    abstract override fun deletePage(page: Int)
 
-    @Query("DELETE FROM nearby_venues WHERE ll = :ll")
-    abstract override fun deleteAll(ll: String)
+    @Query("DELETE FROM nearby_venues")
+    abstract override fun deleteAll()
 
     @Query("SELECT MAX(page) from nearby_venues")
     abstract override fun getLastPage(): Int?

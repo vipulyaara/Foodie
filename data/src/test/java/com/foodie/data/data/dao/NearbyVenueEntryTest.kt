@@ -1,17 +1,17 @@
-//package com.foodie.data.data.dao
+// package com.foodie.data.data.dao
 //
-//import android.database.sqlite.SQLiteConstraintException
-//import com.foodie.data.data.db.daos.NearbyVenueEntryDao
-//import com.foodie.data.utils.BaseDatabaseTest
-//import com.foodie.data.utils.insertShow
-//import com.foodie.data.utils.nearbyVenueEntry1
-//import com.foodie.data.utils.showId
-//import org.hamcrest.CoreMatchers.`is`
-//import org.hamcrest.CoreMatchers.nullValue
-//import org.junit.Assert.assertThat
-//import org.junit.Test
+// import android.database.sqlite.SQLiteConstraintException
+// import com.foodie.data.data.db.daos.NearbyVenueEntryDao
+// import com.foodie.data.utils.BaseDatabaseTest
+// import com.foodie.data.utils.insertShow
+// import com.foodie.data.utils.nearbyVenueEntry1
+// import com.foodie.data.utils.showId
+// import org.hamcrest.CoreMatchers.`is`
+// import org.hamcrest.CoreMatchers.nullValue
+// import org.junit.Assert.assertThat
+// import org.junit.Test
 //
-//class NearbyVenueEntryTest : BaseDatabaseTest() {
+// class NearbyVenueEntryTest : BaseDatabaseTest() {
 //    private lateinit var nearbyVenueEntryDao: NearbyVenueEntryDao
 //
 //    override fun setup() {
@@ -69,4 +69,4 @@
 //        deleteEpisodes(db)
 //        assertThat(nearbyVenueEntryDao.entryWithId(nearbyVenueEntry1Id), `is`(nullValue()))
 //    }
-//}
+// }

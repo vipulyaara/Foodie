@@ -19,10 +19,10 @@ class NearbyVenueRepository {
     private val logger: Logger by kodeinInstance.instance()
     private val venueRepository: VenueRepository by kodeinInstance.instance()
 
-    fun observeForPaging(ll: String) = localNearbyVenueStore.observeForPaging(ll)
+    fun observeForPaging() = localNearbyVenueStore.observeForPaging()
 
-    fun observeForFlowable(ll: String) =
-        localNearbyVenueStore.observeForFlowable(ll, 10, 0)
+    fun observeForFlowable() =
+        localNearbyVenueStore.observeForFlowable(10, 0)
 
     suspend fun loadNextPage(ll: String) {
         val lastPage = localNearbyVenueStore.getLastPage()
@@ -53,7 +53,7 @@ class NearbyVenueRepository {
                         localNearbyVenueStore.deleteAll(ll)
                     }
                     logger.d("saving $entries")
-                    localNearbyVenueStore.saveVenueEntries(page, ll, entries)
+                    localNearbyVenueStore.saveVenueEntries(page, entries)
                     entries.parallelForEach { entry ->
                         if (venueRepository.needsUpdate(entry.venueId))
                             venueRepository.updateVenue(entry.venueId)

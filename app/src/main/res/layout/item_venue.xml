@@ -12,6 +12,10 @@
         <variable
             name="onclickListener"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onFavoriteListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +30,7 @@
             android:layout_height="56dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
+            android:onClickListener="@{onFavoriteListener}"
             app:cardCornerRadius="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

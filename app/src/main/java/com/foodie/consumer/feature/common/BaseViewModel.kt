@@ -47,4 +47,3 @@ fun <T, V> Observable<T>.execute(
     }
         .subscribe { LogUtil.d("it") }
 }
-

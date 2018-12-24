@@ -5,6 +5,7 @@ import com.facebook.stetho.common.LogUtil
 import com.foodie.consumer.config.di.appModule
 import com.foodie.data.config.AppInitializers
 import com.foodie.data.config.di.databaseModule
+import com.foodie.data.config.di.favoriteVenueModule
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.config.di.nearbyModule
 import com.foodie.data.config.di.networkModule
@@ -27,6 +28,7 @@ class FoodieApplication : Application(), KodeinAware {
         import(networkModule)
         import(nearbyModule)
         import(venueDetailModule)
+        import(favoriteVenueModule)
     }
 
     // initializes Timber, Stetho, FrameMetrics

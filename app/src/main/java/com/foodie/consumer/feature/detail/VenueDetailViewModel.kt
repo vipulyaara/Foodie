@@ -1,6 +1,6 @@
 package com.foodie.consumer.feature.detail
 
-import com.foodie.consumer.RxLoadingCounter
+import com.foodie.consumer.config.RxLoadingCounter
 import com.foodie.consumer.feature.common.BaseViewModel
 import com.foodie.consumer.feature.common.execute
 import com.foodie.data.config.di.kodeinInstance
@@ -13,6 +13,8 @@ import org.kodein.di.generic.instance
 
 /**
  * @author Vipul Kumar; dated 22/12/18.
+ *
+ * ViewModel for venue details.
  */
 class VenueDetailViewModel : BaseViewModel<VenueDetailViewState>() {
 

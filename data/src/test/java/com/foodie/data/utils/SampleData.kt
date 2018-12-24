@@ -20,8 +20,8 @@ fun insertFollowedShow(db: FoodieDb) = db.nearbyVenueEntryDao().insert(nearbyVen
 
 const val id1 = 1L
 val nearbyVenueEntry1 = NearbyVenueEntry(id1, venueId, 0, 0)
-//val followedShow1PendingDelete = nearbyVenueEntry1.copy(pendingAction = PendingAction.DELETE)
-//val followedShow1PendingUpload = nearbyVenueEntry1.copy(pendingAction = PendingAction.UPLOAD)
+// val followedShow1PendingDelete = nearbyVenueEntry1.copy(pendingAction = PendingAction.DELETE)
+// val followedShow1PendingUpload = nearbyVenueEntry1.copy(pendingAction = PendingAction.UPLOAD)
 //
-//const val followedShow2Id = 2L
-//val followedShow2 = FollowedShowEntry(followedShow2Id, show2Id)
+// const val followedShow2Id = 2L
+// val followedShow2 = FollowedShowEntry(followedShow2Id, show2Id)

@@ -1,4 +1,4 @@
-package com.foodie.consumer
+package com.foodie.consumer.config
 
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.Logger
