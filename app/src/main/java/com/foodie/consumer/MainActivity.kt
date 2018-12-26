@@ -6,14 +6,13 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.transaction
 import com.foodie.consumer.feature.common.BaseActivity
 import com.foodie.consumer.feature.detail.VenueDetailFragment
-import com.foodie.consumer.feature.nearby.NearbyVenueFragment
+import com.foodie.consumer.feature.nearby.HomeFragment
 import com.foodie.consumer.feature.quickDetail.QuickDetailFragment
 import com.foodie.consumer.ui.transition.SharedElementHelper
 
 /**
  * @author Vipul Kumar; dated 22/10/18.
  *
- * Main activity for the app. We are following single activity model.
  */
 class MainActivity : BaseActivity() {
 
@@ -22,7 +21,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager?.transaction {
-            replace(R.id.fragmentContainer, NearbyVenueFragment())
+            replace(R.id.fragmentContainer, HomeFragment())
         }
     }
 
@@ -31,7 +30,7 @@ class MainActivity : BaseActivity() {
         sharedElements: SharedElementHelper
     ) {
         supportFragmentManager?.transaction {
-            replace(
+            add(
                 R.id.fragmentContainer,
                 VenueDetailFragment().apply { arguments = bundleOf("venueId" to venueId) })
 
@@ -52,7 +51,7 @@ class MainActivity : BaseActivity() {
         sharedElements: SharedElementHelper
     ) {
         supportFragmentManager?.transaction {
-            replace(
+            add(
                 R.id.fragmentContainer,
                 QuickDetailFragment().apply { arguments = bundleOf("venueId" to venueId) })
 

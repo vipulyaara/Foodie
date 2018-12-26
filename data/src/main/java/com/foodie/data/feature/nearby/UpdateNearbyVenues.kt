@@ -16,19 +16,19 @@ import org.kodein.di.generic.instance
 /**
  * @author Vipul Kumar; dated 21/12/18.
  *
- * implementation of a [PagingInteractor] to fetch and update nearby venues.
+ * Implementation of a [PagingInteractor] to fetch and update nearby venues.
  */
 class UpdateNearbyVenues constructor(
     dispatchers: AppCoroutineDispatchers,
     private val schedulers: AppRxSchedulers,
     private val nearbyVenueRepository: NearbyVenueRepository
-) : PagingInteractor<NearbyEntryWithVenue, UpdateNearbyVenues.Params>,
+) : PagingInteractor<NearbyEntryWithVenue>,
     SubjectInteractor<UpdateNearbyVenues.Params, UpdateNearbyVenues.ExecuteParams, List<NearbyEntryWithVenue>>() {
 
     private val logger: Logger by kodeinInstance.instance()
     override val dispatcher: CoroutineDispatcher = dispatchers.io
 
-    override fun dataSourceFactory(params: Params): DataSource.Factory<Int, NearbyEntryWithVenue> {
+    override fun dataSourceFactory(): DataSource.Factory<Int, NearbyEntryWithVenue> {
         return nearbyVenueRepository.observeForPaging()
     }
 

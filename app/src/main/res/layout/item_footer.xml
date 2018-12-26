@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xxxlarge"
+        android:background="#eef0f5"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xxlarge">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="That's it for now!"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_mini"
+            android:letterSpacing="0.05"
+            android:text="For you, with love. Vipul Kumar"
+            android:textSize="@dimen/text_regular" />
+
+    </LinearLayout>
+</layout>

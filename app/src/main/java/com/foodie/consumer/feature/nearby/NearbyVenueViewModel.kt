@@ -1,12 +1,19 @@
 package com.foodie.consumer.feature.nearby
 
-import androidx.paging.DataSource
 import com.foodie.consumer.feature.entry.EntryViewModel
+import com.foodie.consumer.feature.entry.EntryViewState
 import com.foodie.data.config.di.kodeinInstance
+import com.foodie.data.data.AppRxSchedulers
 import com.foodie.data.data.Logger
+import com.foodie.data.data.db.daos.FavoriteVenueEntryDao
 import com.foodie.data.entities.NearbyEntryWithVenue
+import com.foodie.data.feature.favorite.AddToFavoriteVenues
+import com.foodie.data.feature.favorite.UpdateFavoriteVenues
 import com.foodie.data.feature.launchInteractor
 import com.foodie.data.feature.nearby.UpdateNearbyVenues
+import com.foodie.data.model.Status
+import com.foodie.data.model.UiResource
+import io.reactivex.rxkotlin.plusAssign
 import kotlinx.coroutines.coroutineScope
 import org.kodein.di.generic.instance
 
@@ -15,29 +22,47 @@ import org.kodein.di.generic.instance
  *
  * Implementation of [EntryViewModel] to fetch nearby venues.
  **/
-class NearbyVenueViewModel : EntryViewModel<NearbyEntryWithVenue>() {
-
-    private val interactor: UpdateNearbyVenues by kodeinInstance.instance()
+class NearbyVenueViewModel :
+    EntryViewModel<NearbyEntryWithVenue, EntryViewState<NearbyEntryWithVenue>>(
+        entryViewState = EntryViewState(UiResource(Status.SUCCESS), null)
+    ) {
+    private val schedulers: AppRxSchedulers by kodeinInstance.instance()
+    private val updateNearbyVenues: UpdateNearbyVenues by kodeinInstance.instance()
+    private val updateFavoriteVenues: UpdateFavoriteVenues by kodeinInstance.instance()
+    private val addToFavoriteVenues: AddToFavoriteVenues by kodeinInstance.instance()
     private val logger: Logger by kodeinInstance.instance()
+    private val dao: FavoriteVenueEntryDao by kodeinInstance.instance()
 
-    override lateinit var dataSource: DataSource.Factory<Int, NearbyEntryWithVenue>
+    init {
+        dataSource = updateNearbyVenues.dataSourceFactory()
+
+        disposables += updateFavoriteVenues.observe()
+            .toObservable().subscribeOn(schedulers.io)
+            .execute {
+                logger.d("Favorite $it")
+                state
+            }
+    }
 
     fun setParams(params: UpdateNearbyVenues.Params) {
-        interactor.setParams(params)
-        dataSource = interactor.dataSourceFactory(params)
+        updateNearbyVenues.setParams(params)
     }
 
     override suspend fun callLoadMore() = coroutineScope {
         launchInteractor(
-            interactor,
+            updateNearbyVenues,
             UpdateNearbyVenues.ExecuteParams(UpdateNearbyVenues.Page.NEXT_PAGE)
         ).join()
     }
 
     override suspend fun callRefresh() = coroutineScope {
         launchInteractor(
-            interactor,
+            updateNearbyVenues,
             UpdateNearbyVenues.ExecuteParams(UpdateNearbyVenues.Page.REFRESH)
         ).join()
+    }
+
+    internal fun addToFavorites(venueId: String) {
+        scope.launchInteractor(addToFavoriteVenues, AddToFavoriteVenues.Param(venueId))
     }
 }

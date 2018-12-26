@@ -17,8 +17,8 @@ interface Interactor<in P> {
     suspend operator fun invoke(executeParams: P)
 }
 
-interface PagingInteractor<T, P> {
-    fun dataSourceFactory(params: P): DataSource.Factory<Int, T>
+interface PagingInteractor<T> {
+    fun dataSourceFactory(): DataSource.Factory<Int, T>
 }
 
 abstract class ChannelInteractor<P, T : Any> : Interactor<P> {

@@ -1,65 +1,39 @@
 package com.foodie.consumer.feature.favorites
 
 import android.os.Bundle
-import com.foodie.consumer.MainActivity
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.foodie.consumer.ItemVenueBindingModel_
 import com.foodie.consumer.R
-import com.foodie.consumer.feature.entry.BaseEntryFragment
+import com.foodie.consumer.databinding.FragmentFavoriteVenueBinding
+import com.foodie.consumer.feature.common.DataBindingFragment
 import com.foodie.consumer.feature.entry.EntryEpoxyController
-import com.foodie.consumer.itemVenue
-import com.foodie.consumer.ui.transition.ListItemSharedElementHelper
 import com.foodie.data.entities.FavoriteEntryWithVenue
-import com.foodie.data.feature.favorite.UpdateFavoriteVenues
 
 /**
  * @author Vipul Kumar; dated 21/12/18.
  *
  * Fragment to host a list of favorite venues.
  */
-class FavoriteVenueFragment :
-    BaseEntryFragment<FavoriteEntryWithVenue, FavoriteVenueViewModel>(FavoriteVenueViewModel::class.java) {
+class FavoriteVenueFragment : DataBindingFragment<FragmentFavoriteVenueBinding>(
+    R.layout.fragment_favorite_venue
+) {
+    private val controller = createController()
 
-    private val listItemSharedElementHelper by lazy(LazyThreadSafetyMode.NONE) {
-        ListItemSharedElementHelper(binding.recyclerView) { it.findViewById(R.id.imageView) }
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onItemClicked(viewHolderId: Long, item: FavoriteEntryWithVenue) {
-        if (activity is MainActivity) {
-            (activity as MainActivity).launchDetailFragment(
-                item.venue.venueId,
-                listItemSharedElementHelper.createForItem(item, "quick")
-            )
+        binding.rvFavorites.apply {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            setController(controller)
         }
     }
 
-    override fun onItemFavorited(item: FavoriteEntryWithVenue) {
-        viewModel.addToFavorites(item.venue.venueId)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.setParams(UpdateFavoriteVenues.Params())
-        viewModel.refresh()
-    }
-
-    override fun createController(): EntryEpoxyController<FavoriteEntryWithVenue> {
+    private fun createController(): EntryEpoxyController<FavoriteEntryWithVenue> {
         return object : EntryEpoxyController<FavoriteEntryWithVenue>() {
-            override fun buildModels(items: MutableList<FavoriteEntryWithVenue>) {
-                super.buildModels(items)
-                items.forEach { entryWithVenue ->
-                    if (entryWithVenue.venue.venueId.isNotEmpty()) {
-                        itemVenue {
-                            id(entryWithVenue.venue.venueId)
-                            venue(entryWithVenue.venue)
-                            onclickListener { model, parentView, clickedView, position ->
-                                callbacks?.onItemClicked(model.id(), entryWithVenue)
-                            }
-                            onFavoriteListener { model, parentView, clickedView, position ->
-                                callbacks?.onItemFavorited(entryWithVenue)
-                            }
-                        }
-                    }
-                }
+            override fun buildItemModel(item: FavoriteEntryWithVenue): ItemVenueBindingModel_ {
+                return ItemVenueBindingModel_()
             }
         }
     }

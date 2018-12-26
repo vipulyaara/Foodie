@@ -5,11 +5,12 @@ import com.foodie.data.data.api.FoodieApi
 import com.foodie.data.data.api.RetrofitRunner
 import com.foodie.data.entities.VenueDetail
 import com.foodie.data.extensions.executeWithRetry
+import com.foodie.data.feature.common.DataSource
 import com.foodie.data.mapper.VenueDetailMapper
 import com.foodie.data.model.Result
 import org.kodein.di.generic.instance
 
-class VenueDetailDataSource {
+class VenueDetailDataSource : DataSource() {
     private val foodieApi: FoodieApi by kodeinInstance.instance()
     private val retrofitRunner: RetrofitRunner by kodeinInstance.instance()
     private val venueDetailMapper: VenueDetailMapper by kodeinInstance.instance()

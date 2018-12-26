@@ -5,6 +5,7 @@ import com.foodie.data.data.db.DatabaseTransactionRunner
 import com.foodie.data.data.db.EntityInserter
 import com.foodie.data.data.db.daos.VenueDao
 import com.foodie.data.entities.Venue
+import com.foodie.data.feature.common.LocalStore
 import io.reactivex.Flowable
 import org.kodein.di.generic.instance
 
@@ -13,7 +14,7 @@ import org.kodein.di.generic.instance
  *
  * Local store to perform database operations for venues.
  */
-class LocalVenueStore {
+class LocalVenueStore : LocalStore() {
     private val entityInserter: EntityInserter by kodeinInstance.instance()
     private val venueDao: VenueDao by kodeinInstance.instance()
     private val transactionRunner: DatabaseTransactionRunner by kodeinInstance.instance()

@@ -2,11 +2,11 @@ package com.foodie.data.feature.nearby
 
 import androidx.paging.DataSource
 import com.foodie.data.config.di.kodeinInstance
-import com.foodie.data.data.Logger
 import com.foodie.data.data.db.DatabaseTransactionRunner
 import com.foodie.data.data.db.daos.NearbyVenueEntryDao
 import com.foodie.data.entities.NearbyEntryWithVenue
 import com.foodie.data.entities.NearbyVenueEntry
+import com.foodie.data.feature.common.LocalStore
 import io.reactivex.Flowable
 import org.kodein.di.generic.instance
 
@@ -15,10 +15,9 @@ import org.kodein.di.generic.instance
  *
  * Local store to perform database operations.
  */
-class LocalNearbyVenueStore {
+class LocalNearbyVenueStore : LocalStore() {
     private val transactionRunner: DatabaseTransactionRunner by kodeinInstance.instance()
     private val nearbyVenueEntryDao: NearbyVenueEntryDao by kodeinInstance.instance()
-    private val logger: Logger by kodeinInstance.instance()
 
     fun observeForFlowable(
         count: Int,
@@ -37,7 +36,7 @@ class LocalNearbyVenueStore {
             nearbyVenueEntryDao.insertAll(entriesSae)
         }
 
-    fun deleteAll(ll: String) = nearbyVenueEntryDao.deleteAll()
+    fun deleteAll() = nearbyVenueEntryDao.deleteAll()
 
     fun getLastPage(): Int? = nearbyVenueEntryDao.getLastPage()
 }

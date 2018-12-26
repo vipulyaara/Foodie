@@ -13,6 +13,7 @@ import java.util.Objects
 class FavoriteEntryWithVenue : EntryWithVenue<FavoriteVenueEntry> {
     @Embedded
     override var entry: FavoriteVenueEntry? = null
+
     @Relation(parentColumn = "venue_id", entityColumn = "venue_id")
     override var relations: List<Venue> = emptyList()
 

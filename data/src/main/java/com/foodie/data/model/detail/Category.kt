@@ -23,4 +23,9 @@ class Category {
     @SerializedName("primary")
     @Expose
     var primary: Boolean? = null
+
+    val iconUrl: String?
+        get() {
+            return icon?.prefix + icon?.suffix
+        }
 }

@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(
-    tableName = "favorite_venues",
+    tableName = "favorite_venue",
     indices = [
         Index(value = ["venue_id"], unique = true)
     ],
@@ -21,15 +21,11 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = Venue::class,
             parentColumns = arrayOf("venue_id"),
-            childColumns = arrayOf("venue_id"),
-            onUpdate = ForeignKey.CASCADE,
-            onDelete = ForeignKey.CASCADE
+            childColumns = arrayOf("venue_id")
         )
     ]
 )
 data class FavoriteVenueEntry(
-    @PrimaryKey(autoGenerate = true) override var id: Long = 0,
-    @ColumnInfo(name = "venue_id") var venueId: String = "",
-    @ColumnInfo(name = "page") override var page: Int = 1,
-    @ColumnInfo(name = "page_order") val pageOrder: Int
-) : PaginatedEntry
+    @PrimaryKey(autoGenerate = true) override var id: Long,
+    @ColumnInfo(name = "venue_id") var venueId: String = ""
+) : Entry

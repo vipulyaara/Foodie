@@ -19,6 +19,6 @@ interface EntryWithVenue<ET : Entry> {
         }
 
     fun generateStableId(): Long {
-        return Objects.hash(entry!!::class, venue.id).toLong()
+        return Objects.hash(entry!!::class, venue.venueId).toLong()
     }
 }

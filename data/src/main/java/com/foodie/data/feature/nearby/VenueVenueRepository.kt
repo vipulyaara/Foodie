@@ -1,8 +1,8 @@
 package com.foodie.data.feature.nearby
 
 import com.foodie.data.config.di.kodeinInstance
-import com.foodie.data.data.Logger
 import com.foodie.data.entities.Venue
+import com.foodie.data.feature.common.Repository
 import com.foodie.data.feature.entry.VenueRepository
 import io.reactivex.Flowable
 import org.kodein.di.generic.instance
@@ -12,9 +12,8 @@ import org.kodein.di.generic.instance
  *
  * Implementation of [VenueRepository].
  */
-class VenueVenueRepository : VenueRepository {
+class VenueVenueRepository : Repository(), VenueRepository {
     private val localVenueStore: LocalVenueStore by kodeinInstance.instance()
-    private val logger: Logger by kodeinInstance.instance()
 
     override suspend fun getVenue(entryId: String): Venue {
         if (needsUpdate(entryId)) {

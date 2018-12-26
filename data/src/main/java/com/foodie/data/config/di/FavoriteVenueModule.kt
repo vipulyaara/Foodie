@@ -7,7 +7,6 @@ import com.foodie.data.feature.favorite.RemoveFromFavoriteVenues
 import com.foodie.data.feature.favorite.UpdateFavoriteVenues
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
 /**
@@ -17,7 +16,7 @@ import org.kodein.di.generic.provider
 val favoriteVenueModule = Kodein.Module("favoriteVenueModule") {
 
     bind<UpdateFavoriteVenues>() with provider {
-        UpdateFavoriteVenues(instance(), instance(), instance())
+        UpdateFavoriteVenues()
     }
 
     bind<FavoriteVenueRepository>() with provider {

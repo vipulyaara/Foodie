@@ -14,11 +14,11 @@ import com.google.android.gms.location.LocationServices
  */
 @UseSingleton
 @UseDI
+@SuppressLint("MissingPermission")
 class LocationProvider(val application: Application) {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val locationLiveData = MutableLiveData<Location>()
 
-    @SuppressLint("MissingPermission")
     fun fetchCurrentLocation() {
         fusedLocationClient =
                 LocationServices.getFusedLocationProviderClient(application.applicationContext)

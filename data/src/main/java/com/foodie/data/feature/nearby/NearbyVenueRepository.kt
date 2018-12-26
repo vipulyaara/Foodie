@@ -1,9 +1,10 @@
 package com.foodie.data.feature.nearby
 
 import com.foodie.data.config.di.kodeinInstance
-import com.foodie.data.data.Logger
 import com.foodie.data.extensions.parallelForEach
+import com.foodie.data.feature.common.Repository
 import com.foodie.data.feature.entry.VenueRepository
+import com.foodie.data.feature.favorite.FavoriteVenueRepository
 import com.foodie.data.model.Success
 import org.kodein.di.generic.instance
 
@@ -12,12 +13,12 @@ import org.kodein.di.generic.instance
  *
  * Repository to fetch and update nearby venues.
  */
-class NearbyVenueRepository {
+class NearbyVenueRepository : Repository() {
     private val localNearbyVenueStore: LocalNearbyVenueStore by kodeinInstance.instance()
     private val localVenueStore: LocalVenueStore by kodeinInstance.instance()
     private val entryDataSource: NearbyVenueDataSource by kodeinInstance.instance()
-    private val logger: Logger by kodeinInstance.instance()
     private val venueRepository: VenueRepository by kodeinInstance.instance()
+    private val favoriteVenueRepository: FavoriteVenueRepository by kodeinInstance.instance()
 
     fun observeForPaging() = localNearbyVenueStore.observeForPaging()
 
@@ -47,10 +48,14 @@ class NearbyVenueRepository {
             is Success -> {
                 response.data.map { (venue, entry) ->
                     val venueId = localVenueStore.getIdOrSavePlaceholder(venue)
-                    entry.copy(venueId = venueId, ll = ll, page = page)
+                    entry.copy(
+                        venueId = venueId,
+                        ll = ll,
+                        page = page
+                    )
                 }.also { entries ->
                     if (resetOnSave) {
-                        localNearbyVenueStore.deleteAll(ll)
+                        localNearbyVenueStore.deleteAll()
                     }
                     logger.d("saving $entries")
                     localNearbyVenueStore.saveVenueEntries(page, entries)

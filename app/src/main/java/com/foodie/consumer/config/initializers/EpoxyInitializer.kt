@@ -1,7 +1,6 @@
 package com.foodie.consumer.config.initializers
 
 import android.app.Application
-import android.os.Handler
 import android.os.HandlerThread
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.EpoxyController
@@ -20,13 +19,11 @@ import com.foodie.data.config.AppInitializer
 class EpoxyInitializer : AppInitializer {
     override fun init(application: Application) {
         // Make EpoxyController async
-        val handlerThread = HandlerThread("epoxy")
-        handlerThread.start()
+//        EpoxyAsyncUtil.getAsyncBackgroundHandler().also {
+//            EpoxyController.defaultDiffingHandler = it
+//            EpoxyController.defaultModelBuildingHandler = it
+//        }
 
-        Handler(handlerThread.looper).also {
-            EpoxyController.defaultDiffingHandler = it
-            EpoxyController.defaultModelBuildingHandler = it
-        }
 
         // Also setup Carousel to use a more sane snapping behavior
         Carousel.setDefaultGlobalSnapHelperFactory(null)

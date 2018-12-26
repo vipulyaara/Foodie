@@ -2,49 +2,54 @@ package com.foodie.consumer.feature.entry
 
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.foodie.consumer.feature.common.BaseEntryViewModel
+import androidx.paging.RxPagedListBuilder
+import com.foodie.consumer.feature.common.BaseViewModel
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppCoroutineDispatchers
-import com.foodie.data.data.AppRxSchedulers
 import com.foodie.data.data.Logger
 import com.foodie.data.entities.Entry
 import com.foodie.data.entities.EntryWithVenue
-import com.foodie.data.extensions.distinctUntilChanged
 import com.foodie.data.extensions.toFlowable
 import com.foodie.data.model.Status
 import com.foodie.data.model.UiResource
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-abstract class EntryViewModel<LI : EntryWithVenue<out Entry>>(
-    private val pageSize: Int = 50
-) : BaseEntryViewModel() {
-    private val schedulers: AppRxSchedulers by kodeinInstance.instance()
+abstract class EntryViewModel<LI : EntryWithVenue<out Entry>, S : EntryViewState<LI>>(
+    private val pageSize: Int = 10,
+    entryViewState: S
+) : BaseViewModel<S>(entryViewState) {
     private val dispatchers: AppCoroutineDispatchers by kodeinInstance.instance()
-    abstract val dataSource: DataSource.Factory<Int, LI>
     private val logger: Logger by kodeinInstance.instance()
 
-    private val messages = BehaviorSubject.create<UiResource>()
+    val messages = BehaviorSubject.create<UiResource>()
 
-    val liveList by lazy(mode = LazyThreadSafetyMode.NONE) {
-        LivePagedListBuilder<Int, LI>(
-            dataSource,
-            PagedList.Config.Builder().run {
-                setPageSize(pageSize)
-                setPrefetchDistance(pageSize)
-                setEnablePlaceholders(false)
-                build()
-            }
-        ).setBoundaryCallback(object : PagedList.BoundaryCallback<LI>() {
-            override fun onItemAtEndLoaded(itemAtEnd: LI) {
-                logger.d("Entry onItemAtEndLoaded ${itemAtEnd.relations[0]}")
-                onListScrolledToEnd()
-            }
-        }).build().distinctUntilChanged()
+    var dataSource: DataSource.Factory<Int, LI>? = null
+        set(value) {
+            list = RxPagedListBuilder<Int, LI>(value!!, pageListConfig)
+                .setBoundaryCallback(object : PagedList.BoundaryCallback<LI>() {
+                    override fun onItemAtEndLoaded(itemAtEnd: LI) {
+                        onListScrolledToEnd()
+                    }
+                })
+//                .setNotifyScheduler(AndroidSchedulers
+//                    .from(EpoxyAsyncUtil.getAsyncBackgroundHandler().looper))
+                .buildFlowable(BackpressureStrategy.LATEST)
+                .distinctUntilChanged()
+        }
+
+    private val pageListConfig = PagedList.Config.Builder().run {
+        setPageSize(pageSize)
+        setPrefetchDistance(pageSize)
+        setEnablePlaceholders(false)
+        build()
     }
+
+    lateinit var list: Flowable<PagedList<LI>>
 
     val viewState = LiveDataReactiveStreams
         .fromPublisher(messages.toFlowable())

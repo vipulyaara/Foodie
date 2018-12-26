@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.toLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.foodie.consumer.R
@@ -20,12 +21,13 @@ import com.foodie.data.model.Status
  * Generic implementation for fragments that contain paginated list of items.
  *
  * The same fragment can be used for all kinds of lists that are paginated,
- * simply by providing different viewModels into this.
+ * simply by providing different viewModel and data model types.
  *
  */
 @SuppressLint("ValidFragment")
-abstract class BaseEntryFragment<LI : EntryWithVenue<out Entry>,
-        VM : EntryViewModel<LI>>(
+abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
+        S : EntryViewState<LI>,
+        VM : EntryViewModel<LI, S>>(
     private val vmClass: Class<VM>
 ) : DataBindingFragment<FragmentListBinding>(
     R.layout.fragment_list
@@ -35,7 +37,7 @@ abstract class BaseEntryFragment<LI : EntryWithVenue<out Entry>,
 
     /** generic controller for the list items.
      * fragments can provide different items to print on screen */
-    private lateinit var controller: EntryEpoxyController<LI>
+    protected lateinit var controller: EntryEpoxyController<LI>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +46,11 @@ abstract class BaseEntryFragment<LI : EntryWithVenue<out Entry>,
         controller = createController()
         controller.callbacks = object : EntryEpoxyController.Callbacks<LI> {
             override fun onItemFavorited(item: LI) {
-                this@BaseEntryFragment.onItemFavorited(item)
+                this@EntryFragment.onItemFavorited(item)
             }
 
             override fun onItemClicked(viewHolderId: Long, item: LI) {
-                this@BaseEntryFragment.onItemClicked(viewHolderId, item)
+                this@EntryFragment.onItemClicked(viewHolderId, item)
             }
         }
     }
@@ -61,16 +63,13 @@ abstract class BaseEntryFragment<LI : EntryWithVenue<out Entry>,
             setController(controller)
         }
 
-        /** list is updated by [VM] */
-        viewModel.liveList.observeK(this) {
-            it?.toMutableList()?.apply {
-                controller.setList(this)
-            }
+        viewModel.list.toLiveData().observeK(this) {
+            controller.submitList(it)
         }
 
         /** toggle loading state */
-        viewModel.viewState.observeK(this) { uiResource ->
-            uiResource?.let {
+        viewModel.viewState.observeK(this) {
+            it?.let {
                 when (it.status) {
                     Status.SUCCESS -> {
                         controller.isLoading = false
@@ -88,7 +87,5 @@ abstract class BaseEntryFragment<LI : EntryWithVenue<out Entry>,
 
     abstract fun onItemFavorited(item: LI)
 
-    open fun createController(): EntryEpoxyController<LI> {
-        return EntryEpoxyController()
-    }
+    abstract fun createController(): EntryEpoxyController<LI>
 }

@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp">
+        android:padding="36dp">
 
         <TextView
             android:id="@+id/tvHeading"
@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:text="Near You"
+            android:textSize="28sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
