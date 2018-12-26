@@ -25,7 +25,7 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 * Not enough tests. Lack of time.
 
 
-Please help yourself with the app and the code. I would appreciate a thorough read of the code and would love to discuss the goods and bads of the architecture.
+Please help yourself with the app and the code. I would appreciate a thorough read of the code and would love to discuss the architecture.
 
 </br></br>
 
