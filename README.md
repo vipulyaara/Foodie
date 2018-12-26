@@ -20,4 +20,4 @@ I am using an MVVM with interactors as an additional layer to enhance re-usabili
 
 ### Improvements
 * I did not have enough time to work on the UI. Styling and theming are not as good as they should be. I was working on a scene using motion layout but could not complete it.
-* I did not work enough on location and permission frameworks.
+* I did not work enough on location and permission frameworks. Permission feedback handling is poor.
