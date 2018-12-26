@@ -17,6 +17,7 @@ I am using an MVVM with interactors as an additional layer to enhance re-usabili
 * [Epoxy](https://github.com/airbnb/epoxy) - Epoxy is a very flexible framework developed by Airbnb. We use it with recyclerView for any kind of data that can be presented in a list format (e.g. venue detail fragment)
 * [Kodein](https://kodein.org) (KOtlin DEpendency INjection)
 * Retrofit2
+* [Klint](https://github.com/shyiko/ktlint) (code formatter for Kotlin)
 
 
 ### Improvements
