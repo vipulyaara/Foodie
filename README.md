@@ -26,13 +26,13 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 
 Please help yourself with the app and the code. I would appreciate a thorough read of the code and would love to discuss the goods and bads of the architecture.
 
-Solarized dark             |  Solarized Ocean
+Nearby Venues             |  Venue Detail
 :-------------------------:|:-------------------------:
 <img src="https://user-images.githubusercontent.com/6247940/50457454-a67aaf00-0981-11e9-91b3-4723b9d86f42.png" width="500">  |  <img src="https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png" width="500">
 
 
 
-Solarized dark             |  Solarized Ocean
+Empty State            |  Permission popup
 :-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/6247940/50457625-d70f1880-0982-11e9-9db3-ad4ba2f2e41f.png" width="500">  |  <img src="https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png" width="500">
+<img src="https://user-images.githubusercontent.com/6247940/50457625-d70f1880-0982-11e9-9db3-ad4ba2f2e41f.png" width="500">  |  <img src="https://user-images.githubusercontent.com/6247940/50457652-2f461a80-0983-11e9-9847-19502f3697ed.png" width="500">
 
