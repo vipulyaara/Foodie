@@ -31,7 +31,7 @@ class NearbyVenueDataSource : DataSource() {
         return retrofitRunner.executeForResponse(nearbyApiMapper) {
             foodieApi.fetchNearbyVenues(
                 latLong = latLong,
-                radius = 600,
+                radius = 6000,
                 section = api_section_food,
                 count = 10,
                 offset = offset(page),

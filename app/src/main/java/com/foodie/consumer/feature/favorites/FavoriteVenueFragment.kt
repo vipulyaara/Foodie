@@ -2,14 +2,17 @@ package com.foodie.consumer.feature.favorites
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.epoxy.TypedEpoxyController
 import com.foodie.consumer.ItemVenueBindingModel_
+import com.foodie.consumer.feature.main.MainActivity
 import com.foodie.consumer.R
 import com.foodie.consumer.databinding.FragmentFavoriteVenueBinding
 import com.foodie.consumer.feature.common.DataBindingFragment
-import com.foodie.consumer.feature.entry.EntryEpoxyController
-import com.foodie.data.entities.FavoriteEntryWithVenue
+import com.foodie.consumer.itemVenue
+import com.foodie.data.extensions.observeK
 
 /**
  * @author Vipul Kumar; dated 21/12/18.
@@ -19,7 +22,28 @@ import com.foodie.data.entities.FavoriteEntryWithVenue
 class FavoriteVenueFragment : DataBindingFragment<FragmentFavoriteVenueBinding>(
     R.layout.fragment_favorite_venue
 ) {
-    private val controller = createController()
+    private val controller = FavoriteVenueController(object : FavoriteVenueController.Callbacks {
+        override fun onItemClicked(venueId: String) {
+            if (activity is MainActivity) {
+                (activity as MainActivity).launchDetailFragment(
+                    venueId, null
+                )
+            }
+        }
+
+        override fun onItemFavorited(venueId: String, markFavorite: Boolean) {
+            if (markFavorite) {
+                viewModel.addToFavorites(venueId = venueId)
+            } else {
+                viewModel.removeFromFavorites(venueId = venueId)
+            }
+        }
+    })
+
+    private val viewModel by lazy {
+        ViewModelProviders.of(this)
+            .get(FavoriteVenueViewModel::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,13 +52,34 @@ class FavoriteVenueFragment : DataBindingFragment<FragmentFavoriteVenueBinding>(
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             setController(controller)
         }
+
+        viewModel.observableState.observeK(this) {
+            controller.setData(it)
+        }
     }
 
-    private fun createController(): EntryEpoxyController<FavoriteEntryWithVenue> {
-        return object : EntryEpoxyController<FavoriteEntryWithVenue>() {
-            override fun buildItemModel(item: FavoriteEntryWithVenue): ItemVenueBindingModel_ {
-                return ItemVenueBindingModel_()
+    class FavoriteVenueController constructor(
+        private val callbacks: Callbacks
+    ) :
+        TypedEpoxyController<FavoriteVenueViewState>() {
+        override fun buildModels(data: FavoriteVenueViewState?) {
+            data?.favoriteVenues?.forEach { item ->
+                itemVenue {
+                    id(item.generateStableId())
+                    venue(item.venue)
+                    isFavorite(true)
+                    onclickListener { model, _, _, _ -> callbacks.onItemClicked(model.venue().venueId) }
+                    onFavoriteListener { model, _, _, _ ->
+                        callbacks.onItemFavorited(model.venue().venueId, !model.isFavorite)
+                    }
+                }
             }
+            ItemVenueBindingModel_()
+        }
+
+        interface Callbacks {
+            fun onItemClicked(venueId: String)
+            fun onItemFavorited(venueId: String, markFavorite: Boolean)
         }
     }
 }

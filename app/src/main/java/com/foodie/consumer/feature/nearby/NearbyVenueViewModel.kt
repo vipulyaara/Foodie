@@ -7,6 +7,7 @@ import com.foodie.data.data.AppRxSchedulers
 import com.foodie.data.data.db.daos.FavoriteVenueEntryDao
 import com.foodie.data.entities.NearbyEntryWithVenue
 import com.foodie.data.feature.favorite.AddToFavoriteVenues
+import com.foodie.data.feature.favorite.RemoveFromFavoriteVenues
 import com.foodie.data.feature.favorite.UpdateFavoriteVenues
 import com.foodie.data.feature.launchInteractor
 import com.foodie.data.feature.nearby.UpdateNearbyVenues
@@ -29,6 +30,7 @@ class NearbyVenueViewModel :
     private val updateNearbyVenues: UpdateNearbyVenues by kodeinInstance.instance()
     private val updateFavoriteVenues: UpdateFavoriteVenues by kodeinInstance.instance()
     private val addToFavoriteVenues: AddToFavoriteVenues by kodeinInstance.instance()
+    private val removeFromFavoriteVenues: RemoveFromFavoriteVenues by kodeinInstance.instance()
     private val dao: FavoriteVenueEntryDao by kodeinInstance.instance()
 
     init {
@@ -62,5 +64,9 @@ class NearbyVenueViewModel :
 
     internal fun addToFavorites(venueId: String) {
         scope.launchInteractor(addToFavoriteVenues, AddToFavoriteVenues.Param(venueId))
+    }
+
+    internal fun removeFromFavorites(venueId: String) {
+        scope.launchInteractor(removeFromFavoriteVenues, RemoveFromFavoriteVenues.Param(venueId))
     }
 }

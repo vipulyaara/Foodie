@@ -10,12 +10,12 @@ import java.util.Objects
  */
 interface EntryWithVenue<ET : Entry> {
     var entry: ET?
-    var relations: List<Venue>
+    var venues: List<Venue>
 
     val venue: Venue
         get() {
-            assert(relations.size == 1)
-            return relations[0]
+            assert(venues.size == 1)
+            return venues[0]
         }
 
     fun generateStableId(): Long {

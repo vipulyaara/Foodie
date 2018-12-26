@@ -8,18 +8,24 @@
             type="String" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_large"
+        android:paddingTop="@dimen/spacing_large"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingBottom="@dimen/spacing_medium">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:padding="12dp"
+            android:letterSpacing="0.1"
             android:text="@{text}"
-            android:textColor="#0e0e0e"
-            tools:text="Favorites" />
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/text_heading"
+            android:textSize="@dimen/text_mini"
+            android:textStyle="bold" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

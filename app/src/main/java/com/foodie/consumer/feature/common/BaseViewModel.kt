@@ -15,7 +15,7 @@ import org.kodein.di.generic.instance
 /**
  * @author Vipul Kumar; dated 22/10/18.
  *
- * Simple ViewModel which exposes a [CompositeDisposable] and [Job]
+ * ViewModel which exposes a [CompositeDisposable] and [Job]
  * which are automatically cleared/stopped when the ViewModel is cleared.
  */
 open class BaseViewModel<S : BaseViewState>(

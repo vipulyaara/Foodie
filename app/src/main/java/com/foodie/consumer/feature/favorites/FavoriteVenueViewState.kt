@@ -7,6 +7,5 @@ import com.foodie.data.entities.FavoriteEntryWithVenue
  * @author Vipul Kumar; dated 22/12/18.
  */
 data class FavoriteVenueViewState(
-    var favoriteVenues: List<FavoriteEntryWithVenue>? = arrayListOf(),
-    var isLoading: Boolean = false
+    var favoriteVenues: List<FavoriteEntryWithVenue>? = arrayListOf()
 ) : BaseViewState()

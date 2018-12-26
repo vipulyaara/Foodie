@@ -18,9 +18,8 @@
             android:id="@+id/imageView"
             android:layout_width="116dp"
             android:layout_height="116dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="4dp"
+            android:layout_marginStart="@dimen/spacing_medium"
+            app:cardCornerRadius="@dimen/spacing_mini"
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,16 +28,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#eef0f5"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_hero_2" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tvVenueName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/spacing_mini"
+            android:layout_marginTop="@dimen/spacing_regular"
+            android:layout_marginEnd="@dimen/spacing_regular"
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"

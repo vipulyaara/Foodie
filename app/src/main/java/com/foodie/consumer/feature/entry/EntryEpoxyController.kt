@@ -17,9 +17,8 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
 
     override fun buildItemModel(currentPosition: Int, item: LI?): EpoxyModel<*> {
         return if (item != null) {
-            buildItemModel(item)
+            buildItemModel(currentPosition, item)
         } else {
-            logger.d("null")
             buildItemPlaceholder(currentPosition)
         }
     }
@@ -43,10 +42,10 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
 
     interface Callbacks<in LI> {
         fun onItemClicked(viewHolderId: Long, item: LI)
-        fun onItemFavorited(item: LI)
+        fun onItemFavorited(item: LI, markFavorite: Boolean)
     }
 
-    abstract fun buildItemModel(item: LI): ItemVenueBindingModel_
+    abstract fun buildItemModel(position: Int, item: LI): ItemVenueBindingModel_
 
     protected open fun buildItemPlaceholder(index: Int): ItemVenueBindingModel_ {
         return ItemVenueBindingModel_()

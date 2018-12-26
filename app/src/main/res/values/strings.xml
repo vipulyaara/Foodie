@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Foodie</string>
     <string name="search_for_restaurants">Search for restaurants</string>
+    <string name="overview">Overview</string>
+    <string name="access_all_your_favorite_restaurants">Access all your favorite restaurants</string>
+    <string name="favorites">Favorites</string>
+    <string name="go_to_favorites">Go to Favorites</string>
+    <string name="we_cannot_show_you_nearby_restaurants_without_location">We cannot show you nearby restaurants without location.</string>
+    <string name="we_need_your_location">Permission required</string>
+    <string name="grant_permission">Grant Permission</string>
 </resources>

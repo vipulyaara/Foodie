@@ -18,13 +18,16 @@ class NearbyEntryWithVenue : EntryWithVenue<NearbyVenueEntry> {
     var favorite: List<FavoriteVenueEntry>? = null
 
     @Relation(parentColumn = "venue_id", entityColumn = "venue_id")
-    override var relations: List<Venue> = emptyList()
+    var blockedVenues: List<BlockedVenueEntry>? = null
+
+    @Relation(parentColumn = "venue_id", entityColumn = "venue_id")
+    override var venues: List<Venue> = emptyList()
 
     override fun equals(other: Any?): Boolean = when {
         other === this -> true
-        other is NearbyEntryWithVenue -> entry == other.entry && relations == other.relations
+        other is NearbyEntryWithVenue -> entry == other.entry && venues == other.venues
         else -> false
     }
 
-    override fun hashCode(): Int = Objects.hash(entry, relations)
+    override fun hashCode(): Int = Objects.hash(entry, venues)
 }

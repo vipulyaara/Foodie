@@ -21,13 +21,11 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = Venue::class,
             parentColumns = arrayOf("venue_id"),
-            childColumns = arrayOf("venue_id"),
-            onUpdate = ForeignKey.CASCADE,
-            onDelete = ForeignKey.CASCADE
+            childColumns = arrayOf("venue_id")
         )
     ]
 )
 data class BlockedVenueEntry(
-    @PrimaryKey(autoGenerate = true) override var id: Long,
+    @PrimaryKey(autoGenerate = true) override var id: Long = 0,
     @ColumnInfo(name = "venue_id") var venueId: String = ""
 ) : Entry

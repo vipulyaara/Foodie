@@ -15,13 +15,13 @@ class BlockedEntryWithVenue : EntryWithVenue<BlockedVenueEntry> {
     override var entry: BlockedVenueEntry? = null
 
     @Relation(parentColumn = "venue_id", entityColumn = "venue_id")
-    override var relations: List<Venue> = emptyList()
+    override var venues: List<Venue> = emptyList()
 
     override fun equals(other: Any?): Boolean = when {
         other === this -> true
-        other is BlockedEntryWithVenue -> entry == other.entry && relations == other.relations
+        other is BlockedEntryWithVenue -> entry == other.entry && venues == other.venues
         else -> false
     }
 
-    override fun hashCode(): Int = Objects.hash(entry, relations)
+    override fun hashCode(): Int = Objects.hash(entry, venues)
 }

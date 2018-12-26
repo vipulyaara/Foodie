@@ -2,10 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="seeFavoritesListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+        android:onClickListener="@{seeFavoritesListener}"
         app:cardBackgroundColor="#7540EE"
         app:cardCornerRadius="4dp"
         app:cardElevation="1dp"
@@ -25,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="0.1"
-                android:text="Favorites"
+                android:text="@string/favorites"
                 android:textColor="#fff" />
 
             <TextView
@@ -34,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:lineSpacingExtra="2dp"
-                android:text="Access all your favorite restaurants"
+                android:text="@string/access_all_your_favorite_restaurants"
                 android:textColor="#88ffffff"
                 app:layout_constraintStart_toStartOf="@id/tvHeading"
                 app:layout_constraintTop_toBottomOf="@id/tvHeading" />
@@ -52,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Go to Favorites"
+                android:text="@string/go_to_favorites"
                 android:textAllCaps="true"
                 android:textColor="#00D95A"
                 android:textSize="12sp"

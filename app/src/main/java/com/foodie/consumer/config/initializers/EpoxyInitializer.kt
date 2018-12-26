@@ -24,7 +24,6 @@ class EpoxyInitializer : AppInitializer {
 //            EpoxyController.defaultModelBuildingHandler = it
 //        }
 
-
         // Also setup Carousel to use a more sane snapping behavior
         Carousel.setDefaultGlobalSnapHelperFactory(null)
 

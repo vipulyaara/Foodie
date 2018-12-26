@@ -26,6 +26,6 @@ import androidx.room.PrimaryKey
     ]
 )
 data class FavoriteVenueEntry(
-    @PrimaryKey(autoGenerate = true) override var id: Long,
+    @PrimaryKey(autoGenerate = true) override var id: Long = 0,
     @ColumnInfo(name = "venue_id") var venueId: String = ""
 ) : Entry

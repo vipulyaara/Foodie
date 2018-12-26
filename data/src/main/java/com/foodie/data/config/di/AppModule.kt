@@ -40,6 +40,10 @@ val networkModule = Kodein.Module("networkModule") {
         RetrofitRunner()
     }
 
+    bind<com.foodie.data.feature.location.LocationProvider>() with singleton {
+        com.foodie.data.feature.location.LocationProvider(instance())
+    }
+
     bind<AppRxSchedulers>() with singleton {
         AppRxSchedulers(
             io = Schedulers.io(),

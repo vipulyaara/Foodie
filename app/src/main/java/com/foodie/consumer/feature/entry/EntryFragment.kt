@@ -35,8 +35,8 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
 
     protected lateinit var viewModel: VM
 
-    /** generic controller for the list items.
-     * fragments can provide different items to print on screen */
+    /** controller for the list items.
+     * child fragments can provide different implementation for items to print on screen */
     protected lateinit var controller: EntryEpoxyController<LI>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +45,8 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
 
         controller = createController()
         controller.callbacks = object : EntryEpoxyController.Callbacks<LI> {
-            override fun onItemFavorited(item: LI) {
-                this@EntryFragment.onItemFavorited(item)
+            override fun onItemFavorited(item: LI, markFavorite: Boolean) {
+                this@EntryFragment.onItemFavorited(item, markFavorite)
             }
 
             override fun onItemClicked(viewHolderId: Long, item: LI) {
@@ -68,15 +68,11 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
         }
 
         /** toggle loading state */
-        viewModel.viewState.observeK(this) {
-            it?.let {
+        viewModel.viewState.observeK(this) { uiResource ->
+            uiResource?.let {
                 when (it.status) {
-                    Status.SUCCESS -> {
-                        controller.isLoading = false
-                    }
-                    Status.ERROR -> {
-                        controller.isLoading = false
-                    }
+                    Status.SUCCESS -> controller.isLoading = false
+                    Status.ERROR -> controller.isLoading = false
                     Status.LOADING_MORE -> controller.isLoading = true
                 }
             }
@@ -85,7 +81,7 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
 
     abstract fun onItemClicked(viewHolderId: Long, item: LI)
 
-    abstract fun onItemFavorited(item: LI)
+    abstract fun onItemFavorited(item: LI, markFavorite: Boolean)
 
     abstract fun createController(): EntryEpoxyController<LI>
 }

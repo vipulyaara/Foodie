@@ -15,4 +15,7 @@ abstract class FavoriteVenueEntryDao :
 
     @Query("SELECT * from favorite_venue")
     abstract fun getFavoriteVenues(): List<FavoriteEntryWithVenue>
+
+    @Query("DELETE from favorite_venue WHERE venue_id = :venueId")
+    abstract fun delete(venueId: String)
 }

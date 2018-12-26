@@ -22,7 +22,7 @@ class LocalFavoriteVenueStore : LocalStore() {
         dao.insert(favoriteVenueEntry)
     }
 
-    fun removeFromFavorites(favoriteVenueEntry: FavoriteVenueEntry) {
-        dao.delete(favoriteVenueEntry)
+    fun removeFromFavorites(venueId: String) {
+        dao.delete(venueId)
     }
 }

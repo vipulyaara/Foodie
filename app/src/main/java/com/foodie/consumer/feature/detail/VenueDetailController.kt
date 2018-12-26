@@ -4,6 +4,7 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.foodie.consumer.ItemFavoriteVenueBindingModel_
 import com.foodie.consumer.itemFooter
 import com.foodie.consumer.itemLoader
+import com.foodie.consumer.itemRowHeader
 import com.foodie.consumer.itemTip
 import com.foodie.consumer.itemVenueDetail
 import com.foodie.consumer.ui.epoxy.carousel
@@ -33,11 +34,12 @@ class VenueDetailController constructor(
                 id(venueDetail.venueId)
                 venue(venueDetail)
                 isFavorite(data.isFavorite)
-                onFavoriteListener { model, parentView, clickedView, position ->
-                    callbacks.onItemFavorited(venueDetail.venueId)
+                isBlocked(data.isBlocked)
+                onFavoriteListener { model, _, _, _ ->
+                    callbacks.onItemFavorited(model.venue().venueId, !model.isFavorite)
                 }
-                onBlockListener { model, parentView, clickedView, position ->
-                    callbacks.onItemBlocked(venueDetail.venueId)
+                onBlockListener { model, _, _, _ ->
+                    callbacks.onItemBlocked(model.venue().venueId, !model.isBlocked)
                 }
             }
 
@@ -51,6 +53,10 @@ class VenueDetailController constructor(
 //            }
 
             if (data.favoriteVenues.isNotEmpty()) {
+                itemRowHeader {
+                    id("favorite header")
+                    text("Favorites")
+                }
                 carousel {
                     id("Favorites")
                     withModelsFrom(data.favoriteVenues) {
@@ -66,7 +72,7 @@ class VenueDetailController constructor(
     }
 
     interface Callbacks {
-        fun onItemBlocked(venueId: String)
-        fun onItemFavorited(venueId: String)
+        fun onItemBlocked(venueId: String, markBlocked: Boolean)
+        fun onItemFavorited(venueId: String, markFavorite: Boolean)
     }
 }

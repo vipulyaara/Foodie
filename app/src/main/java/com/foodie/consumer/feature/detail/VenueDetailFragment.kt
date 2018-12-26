@@ -2,8 +2,6 @@ package com.foodie.consumer.feature.detail
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,14 +21,20 @@ class VenueDetailFragment : DataBindingFragment<FragmentVenueDetailBinding>(
 ) {
 
     private val controller = VenueDetailController(object : VenueDetailController.Callbacks {
-        override fun onItemBlocked(venueId: String) {
-            Toast.makeText(context, "Blocked", Toast.LENGTH_SHORT).show()
-            viewModel.removeFromFavorites(venueId)
+        override fun onItemBlocked(venueId: String, markBlocked: Boolean) {
+            if (markBlocked) {
+                viewModel.addToBlockedVenues(venueId)
+            } else {
+                viewModel.removeFromBlockedVenues(venueId)
+            }
         }
 
-        override fun onItemFavorited(venueId: String) {
-            Toast.makeText(context, "Favorited", Toast.LENGTH_SHORT).show()
-            viewModel.addToFavorites(venueId)
+        override fun onItemFavorited(venueId: String, markFavorite: Boolean) {
+            if (markFavorite) {
+                viewModel.addToFavorites(venueId)
+            } else {
+                viewModel.removeFromFavorites(venueId)
+            }
         }
     })
 
@@ -40,8 +44,6 @@ class VenueDetailFragment : DataBindingFragment<FragmentVenueDetailBinding>(
         ViewModelProviders.of(this)
             .get(VenueDetailViewModel::class.java)
     }
-
-    private val result = MediatorLiveData<VenueDetailViewState>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,6 +57,7 @@ class VenueDetailFragment : DataBindingFragment<FragmentVenueDetailBinding>(
         }
 
         viewModel.setParams(venueId ?: "")
+        viewModel.updateContentDetail()
     }
 
     private fun initUi() {

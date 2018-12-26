@@ -18,12 +18,12 @@ class RxLoadingCounter {
     val flowable by lazy(LazyThreadSafetyMode.NONE) { observable.toFlowable() }
 
     fun addLoader() {
-        logger.d("add loader called")
+        logger.d("loader added")
         loadingState.onNext(++loaders)
     }
 
     fun removeLoader() {
-        logger.d("remove loader called")
+        logger.d("loader removed")
         loadingState.onNext(--loaders)
     }
 }

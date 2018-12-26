@@ -9,9 +9,11 @@ import com.foodie.data.config.AppInitializer
  */
 class LeakCanaryInitializer : AppInitializer {
     override fun init(application: Application) {
-//        if (LeakCanary.isInAnalyzerProcess(application)) {
-//            return
+//        if (BuildConfig.DEBUG) {
+//            if (LeakCanary.isInAnalyzerProcess(application)) {
+//                return
+//            }
+//            LeakCanary.install(application)
 //        }
-//        LeakCanary.install(application)
     }
 }
