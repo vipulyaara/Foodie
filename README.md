@@ -6,7 +6,7 @@ Demo application to show food outlets around user.
 
 This app focuses on scalable, flexible and reactive app architecure. It can even be "too much code" (e.g. dependency injection) for an app this size, but it is meant to be scaled well.
 
-I am using an MVVM with interactors as an additional layer to enhance re-usability. The app uses following frameworks
+It is a version of MVVM with interactors as an additional layer to enhance re-usability. The app uses following frameworks
 
 
 * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) (throughout the data layer; for thread switching)
@@ -17,6 +17,7 @@ I am using an MVVM with interactors as an additional layer to enhance re-usabili
 * [Epoxy](https://github.com/airbnb/epoxy) - Epoxy is a very flexible framework developed by Airbnb. We use it with recyclerView for any kind of data that can be presented in a list format (e.g. venue detail fragment)
 * [Kodein](https://kodein.org) (KOtlin DEpendency INjection)
 * Retrofit2
+* [Klint](https://github.com/shyiko/ktlint) (code formatter for Kotlin)
 
 
 ### Improvements
