@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteConstraintException
 import com.foodie.data.data.db.daos.VenueDao
 import com.foodie.data.utils.BaseDatabaseTest
 import com.foodie.data.utils.insertShow
+import com.foodie.data.utils.showId
 import com.foodie.data.utils.venue1
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
@@ -16,7 +17,7 @@ class VenuesTest : BaseDatabaseTest() {
     override fun setup() {
         super.setup()
         venueDao = db.venueDao()
-        // We'll assume that there's a venue1 and season in the db
+        // We'll assume that there's a venue1 in db
         insertShow(db)
     }
 
@@ -30,7 +31,7 @@ class VenuesTest : BaseDatabaseTest() {
     fun insert_withId() {
         venueDao.insert(venue1)
         // Make a copy with a 0 id
-        val copy = venue1.copy(id = 0)
+        val copy = venue1.copy(id = showId)
         venueDao.insert(copy)
     }
 
