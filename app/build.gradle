@@ -70,7 +70,7 @@ dependencies {
     implementation deps.androidx.lifecycle.reactive_streams
     implementation deps.androidx.lifecycle.testing
 
-    implementation 'androidx.core:core-ktx:1.1.0-alpha03'
+    implementation deps.androidx.ktx.core
     implementation deps.androidx.ktx.fragment
     implementation deps.androidx.ktx.reactive_streams
 
@@ -98,9 +98,8 @@ dependencies {
     implementation deps.glide
     implementation deps.glide_transformations
 
-    ktlint "com.github.shyiko:ktlint:0.28.0"
-
-    implementation "com.airbnb.android:lottie:2.8.0"
+    ktlint deps.klint
+    implementation deps.lottie
 }
 
 apply from: '../klint-script.gradle'

@@ -22,7 +22,6 @@ versions.kodein = "5.2.0"
 versions.multi_dex = "1.0.2"
 versions.gson = "2.8.1"
 versions.crashlytics = "2.6.8@aar"
-versions.play_services = "11.8.0"
 versions.leak_canary = "1.5.4"
 versions.stetho = "1.5.0"
 versions.roughike_bottombar = "2.3.1"
@@ -40,10 +39,11 @@ versions.glide = "4.7.1"
 versions.glide_transformations = "2.0.2"
 versions.timber = "4.5.1"
 
-versions.ktx = "1.0.0-alpha1"
+versions.ktx = "1.1.0-alpha03"
 versions.ktx_nav = "1.0.0-alpha01"
 versions.ktx_lifecycle = "2.0.0-alpha1"
 
+versions.testing = "1.1.0"
 versions.room = "2.1.0-alpha03"
 versions.paging = "2.1.0-rc01"
 versions.support = "1.0.0-alpha1"
@@ -58,9 +58,15 @@ versions.logger = "2.2.0"
 versions.espresso = "3.0.1"
 versions.mockwebserver = "3.8.1"
 versions.mockito = "2.7.19"
+versions.mockito_kotlin = "2.0.0-RC3"
 versions.mockito_all = "1.10.19"
 versions.junit = "4.12"
 versions.hamcrest = "1.3"
+versions.robo_electric = "4.0.2"
+
+versions.play_services = "16.0.0"
+versions.klint = "0.28.0"
+versions.lottie = "2.8.0"
 
 versions.auto_service = "1.0-rc4"
 def deps = [:]
@@ -73,6 +79,7 @@ androidx.recyclerview = "androidx.recyclerview:recyclerview:${versions.support}"
 androidx.fragment = "androidx.fragment:fragment:${versions.support}"
 androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
 androidx.work_manager = "android.arch.work:work-runtime:${versions.work_manager}"
+androidx.testing = "androidx.test:core:$versions.testing"
 deps.androidx = androidx
 
 def paging = [:]
@@ -136,7 +143,9 @@ testing.junit = "junit:junit:$versions.junit"
 testing.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
 testing.mockito_core = "org.mockito:mockito-core:$versions.mockito"
 testing.mockito_all = "org.mockito:mockito-all:$versions.mockito_all"
+testing.mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 testing.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+testing.robo_electric = "org.robolectric:robolectric:$versions.robo_electric"
 deps.testing = testing
 
 def facebook = [:]
@@ -145,6 +154,7 @@ deps.facebook = facebook
 
 def play_services = [:]
 play_services.base = "com.google.android.gms:play-services-base:$versions.play_services"
+play_services.location =  "com.google.android.gms:play-services-location:$versions.play_services"
 deps.play_services = play_services
 
 def retrofit = [:]
@@ -227,6 +237,8 @@ deps.expectanim = "com.github.florent37:expectanim:$versions.expectanim"
 deps.smarttab = "com.ogaclejapan.smarttablayout:library:$versions.smarttab"
 deps.logger = "com.orhanobut:logger:$versions.logger"
 deps.auto_service = "com.google.auto.service:auto-service:$versions.auto_service"
+deps.klint = "com.google.auto.service:auto-service:$versions.klint"
+deps.lottie = "com.airbnb.android:lottie:$versions.lottie"
 
 ext.deps = deps
 

@@ -50,7 +50,7 @@ dependencies {
     implementation deps.androidx.lifecycle.reactive_streams
     implementation deps.androidx.lifecycle.testing
 
-    implementation 'androidx.core:core-ktx:1.1.0-alpha03'
+    implementation deps.androidx.ktx.core
     implementation deps.androidx.ktx.fragment
     implementation deps.androidx.ktx.reactive_streams
 
@@ -79,18 +79,15 @@ dependencies {
     implementation deps.glide
     implementation deps.glide_transformations
 
-    ktlint "com.github.shyiko:ktlint:0.28.0"
+    ktlint deps.klint
+    implementation deps.play_services.location
 
-    implementation "com.google.android.gms:play-services-location:16.0.0"
+    testImplementation deps.testing.junit
+    testImplementation deps.testing.robo_electric
+    testImplementation deps.testing.mockito_kotlin
 
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.robolectric:robolectric:4.0.2"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3"
-
-    testImplementation "androidx.test:core:1.0.0"
-    testImplementation "androidx.arch.core:core-testing:2.0.0"
-
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0"
+    testImplementation deps.androidx.testing
+    testImplementation deps.androidx.lifecycle.testing
 }
 
 apply from: '../klint-script.gradle'

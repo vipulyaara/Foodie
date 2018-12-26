@@ -10,13 +10,6 @@ inline fun <T> LiveData<T>.observeK(owner: LifecycleOwner, crossinline observer:
     this.observe(owner, Observer { observer(it) })
 }
 
-inline fun <T> LiveData<T>.observeNotNull(
-    owner: LifecycleOwner,
-    crossinline observer: (T) -> Unit
-) {
-    this.observe(owner, Observer { observer(it!!) })
-}
-
 fun <T> LiveData<T>.distinctUntilChanged(): LiveData<T> {
     val distinctLiveData = MediatorLiveData<T>()
     distinctLiveData.addSource(this, object : Observer<T> {

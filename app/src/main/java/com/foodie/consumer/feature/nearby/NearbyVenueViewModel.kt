@@ -37,6 +37,10 @@ class NearbyVenueViewModel :
         disposables += updateFavoriteVenues.observe()
             .toObservable().subscribeOn(schedulers.io)
             .execute { state }
+
+        disposables += updateNearbyVenues.observe()
+            .toObservable().subscribeOn(schedulers.io)
+            .execute { state }
     }
 
     fun setParams(params: UpdateNearbyVenues.Params) {
