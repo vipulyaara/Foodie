@@ -15,4 +15,4 @@ I am using an MVVM with interactors as an additional layer to enhance re-usabili
 * [Room](https://developer.android.com/topic/libraries/architecture/room)
 * [Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) (for pagination and integration with room)
 * [Epoxy](https://github.com/airbnb/epoxy) - Epoxy is a very flexible framework developed by Airbnb. We use it with recyclerView for any kind of data that can be presented in a list format (e.g. venue detail fragment)
-* [Kodein](https://kodein.org) (dependency injection)
+* [Kodein](https://kodein.org) (KOtlin DEpendency INjection)
