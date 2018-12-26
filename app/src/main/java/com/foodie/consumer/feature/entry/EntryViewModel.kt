@@ -7,7 +7,6 @@ import androidx.paging.RxPagedListBuilder
 import com.foodie.consumer.feature.common.BaseViewModel
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppCoroutineDispatchers
-import com.foodie.data.data.Logger
 import com.foodie.data.entities.Entry
 import com.foodie.data.entities.EntryWithVenue
 import com.foodie.data.extensions.toFlowable
@@ -24,7 +23,6 @@ abstract class EntryViewModel<LI : EntryWithVenue<out Entry>, S : EntryViewState
     entryViewState: S
 ) : BaseViewModel<S>(entryViewState) {
     private val dispatchers: AppCoroutineDispatchers by kodeinInstance.instance()
-    private val logger: Logger by kodeinInstance.instance()
 
     val messages = BehaviorSubject.create<UiResource>()
 

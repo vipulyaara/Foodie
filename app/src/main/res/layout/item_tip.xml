@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2200D85A"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="#1100D85A"
         android:padding="24dp">
 
         <LinearLayout

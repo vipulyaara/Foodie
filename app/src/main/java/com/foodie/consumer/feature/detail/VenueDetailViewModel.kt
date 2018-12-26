@@ -4,7 +4,6 @@ import com.foodie.consumer.config.RxLoadingCounter
 import com.foodie.consumer.feature.common.BaseViewModel
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppRxSchedulers
-import com.foodie.data.data.Logger
 import com.foodie.data.feature.detail.UpdateVenueDetail
 import com.foodie.data.feature.favorite.AddToFavoriteVenues
 import com.foodie.data.feature.favorite.UpdateFavoriteVenues
@@ -22,7 +21,7 @@ class VenueDetailViewModel : BaseViewModel<VenueDetailViewState>(VenueDetailView
     private val updateVenueDetail: UpdateVenueDetail by kodeinInstance.instance()
     private val updateFavoriteVenues: UpdateFavoriteVenues by kodeinInstance.instance()
     private val addToFavoriteVenues: AddToFavoriteVenues by kodeinInstance.instance()
-    private val logger: Logger by kodeinInstance.instance()
+    private var venueId: String = ""
 
     private val loadingState = RxLoadingCounter()
 
@@ -35,7 +34,11 @@ class VenueDetailViewModel : BaseViewModel<VenueDetailViewState>(VenueDetailView
         disposables += updateFavoriteVenues.observe()
             .toObservable()
             .subscribeOn(schedulers.io)
-            .execute { copy(favoriteVenues = it) }
+            .execute { list ->
+                list.sortedBy { it.venue.name }
+                isFavorite = list.firstOrNull { it.venue.venueId == venueId } != null
+                copy(favoriteVenues = list)
+            }
 
         loadingState.observable
             .execute {
@@ -45,6 +48,7 @@ class VenueDetailViewModel : BaseViewModel<VenueDetailViewState>(VenueDetailView
     }
 
     fun setParams(venueId: String) {
+        this.venueId = venueId
         loadingState.addLoader()
         updateVenueDetail.setParams(UpdateVenueDetail.Param(venueId))
         scope.launchInteractor(updateVenueDetail, UpdateVenueDetail.ExecuteParams(Unit))

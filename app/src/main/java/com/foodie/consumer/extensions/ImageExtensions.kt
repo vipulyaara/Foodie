@@ -8,7 +8,6 @@ import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.foodie.consumer.R
 import com.foodie.consumer.ui.glide.SaturationTransitionFactory
 
 /**
@@ -22,7 +21,6 @@ inline fun ImageView.loadImage(
 ) {
     requestManager.func().apply(
         RequestOptions()
-            .placeholder(R.color.colorAccent)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
     )
         .transition(

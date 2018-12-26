@@ -23,7 +23,7 @@ open class BaseViewModel<S : BaseViewState>(
 ) : ViewModel(), IBaseViewModel {
     private val job = Job()
 
-    private val logger: Logger by kodeinInstance.instance()
+    protected val logger: Logger by kodeinInstance.instance()
     override val disposables = CompositeDisposable()
     override val scope = CoroutineScope(Dispatchers.Main + job)
     var observableState = MediatorLiveData<S>()
@@ -34,6 +34,7 @@ open class BaseViewModel<S : BaseViewState>(
         job.cancel()
     }
 
+    /** posts a new state value to [observableState] which is usually observed by the fragment. */
     fun <T> Observable<T>.execute(
         stateReducer: S.(T) -> S
     ): Disposable {

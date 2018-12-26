@@ -26,7 +26,7 @@ class NearbyVenueFragment :
                 return ItemVenueBindingModel_()
                     .id(item.generateStableId())
                     .venue(item.venue)
-                    .isFavorite(item.favorite?.venueId != null)
+                    .isFavorite(item.favorite?.isNotEmpty())
                     .onclickListener(View.OnClickListener { callbacks?.onItemClicked(0, item) })
                     .onFavoriteListener { _, _, _, _ ->
                         callbacks?.onItemFavorited(item)
@@ -55,6 +55,10 @@ class NearbyVenueFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.setParams(UpdateNearbyVenues.Params("40.7484,-73.9857"))
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.refresh()
     }
 }

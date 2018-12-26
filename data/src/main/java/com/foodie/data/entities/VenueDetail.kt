@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.foodie.data.model.detail.Attribute
 import com.foodie.data.model.detail.Category
 import com.foodie.data.model.detail.VenueDetailFromResponse
 
@@ -22,7 +23,8 @@ data class VenueDetail(
     @ColumnInfo(name = "photo") var photo: String? = null,
     @ColumnInfo(name = "description") var description: String? = null,
     @ColumnInfo(name = "categories") var categories: List<Category>? = null,
-    @ColumnInfo(name = "tip") var tip: String? = null
+    @ColumnInfo(name = "tip") var tip: String? = null,
+    @ColumnInfo(name = "attributes") var attributes: List<Attribute>? = null
 ) : BaseEntity {
 
     fun isEmpty() = venueId.isEmpty()
@@ -39,7 +41,6 @@ fun VenueDetailFromResponse.toVenueDetail() = VenueDetail(
     name = this.name,
     description = this.description,
     categories = this.categories,
-    tip = this.tips?.groups?.map { it.items?.map { it.text } }?.get(0)?.get(0)
-//    photo = this.photos?.groups?.let { list -> list[0].items?.let {
-//            items -> items[0].let { it.prefix + "${it.width},${it.height}" + it.suffix } } }
+    tip = this.tips?.groups?.map { it.items?.map { it.text } }?.get(0)?.get(0),
+    photo = this.bestPhoto?.run { "$prefix${width}x$height$suffix" }
 )

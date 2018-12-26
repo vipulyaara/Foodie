@@ -10,6 +10,14 @@
             type="com.foodie.data.entities.VenueDetail" />
 
         <variable
+            name="isFavorite"
+            type="Boolean" />
+
+        <variable
+            name="isBlocked"
+            type="Boolean" />
+
+        <variable
             name="onFavoriteListener"
             type="android.view.View.OnClickListener" />
 
@@ -24,10 +32,10 @@
 
         <ImageView
             android:id="@+id/imageView2"
+            imageUrl="@{venue.photo}"
             android:layout_width="0dp"
             android:layout_height="256dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_hero_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,8 +84,8 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:onClickListener="@{onFavoriteListener}"
             android:padding="8dp"
-            android:src="@drawable/ic_favorite_border_black_24dp"
-            android:tint="@color/icon_tint"
+            android:src="@{isFavorite ? @drawable/ic_favorite_black_24dp :@drawable/ic_favorite_border_black_24dp}"
+            android:tint="@{isFavorite? @color/colorAccent : @color/icon_tint}"
             app:layout_constraintEnd_toStartOf="@+id/ivBlock"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

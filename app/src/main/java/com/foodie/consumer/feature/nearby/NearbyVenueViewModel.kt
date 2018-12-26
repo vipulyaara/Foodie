@@ -4,7 +4,6 @@ import com.foodie.consumer.feature.entry.EntryViewModel
 import com.foodie.consumer.feature.entry.EntryViewState
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppRxSchedulers
-import com.foodie.data.data.Logger
 import com.foodie.data.data.db.daos.FavoriteVenueEntryDao
 import com.foodie.data.entities.NearbyEntryWithVenue
 import com.foodie.data.feature.favorite.AddToFavoriteVenues
@@ -30,7 +29,6 @@ class NearbyVenueViewModel :
     private val updateNearbyVenues: UpdateNearbyVenues by kodeinInstance.instance()
     private val updateFavoriteVenues: UpdateFavoriteVenues by kodeinInstance.instance()
     private val addToFavoriteVenues: AddToFavoriteVenues by kodeinInstance.instance()
-    private val logger: Logger by kodeinInstance.instance()
     private val dao: FavoriteVenueEntryDao by kodeinInstance.instance()
 
     init {

@@ -19,7 +19,7 @@ import org.kodein.di.generic.instance
  * Controller to lay out items for [VenueDetailFragment].
  */
 class VenueDetailController constructor(
-    val callbacks: Callbacks
+    private val callbacks: Callbacks
 ) : TypedEpoxyController<VenueDetailViewState>() {
     private val logger: Logger by kodeinInstance.instance()
 
@@ -32,6 +32,7 @@ class VenueDetailController constructor(
             itemVenueDetail {
                 id(venueDetail.venueId)
                 venue(venueDetail)
+                isFavorite(data.isFavorite)
                 onFavoriteListener { model, parentView, clickedView, position ->
                     callbacks.onItemFavorited(venueDetail.venueId)
                 }
@@ -44,6 +45,10 @@ class VenueDetailController constructor(
                 id("tip")
                 tip(venueDetail.tip)
             }
+
+//            data.venueDetail.attributes?.forEach {
+//                itemAttribute { id("it") }
+//            }
 
             if (data.favoriteVenues.isNotEmpty()) {
                 carousel {
