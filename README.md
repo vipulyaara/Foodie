@@ -20,6 +20,9 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 * [Klint](https://github.com/shyiko/ktlint) (code formatter for Kotlin)
 
 
+![final-architecture](https://user-images.githubusercontent.com/6247940/50457712-c317e680-0983-11e9-8dda-5b0f614abeb9.png)
+
+
 ### Improvements
 * Styling and theming are not as good as they should be. Also working on a scene using motion layout but could not complete it.
 * Not enough tests. Lack of time.
