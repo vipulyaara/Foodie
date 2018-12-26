@@ -6,7 +6,7 @@ Demo application to show food outlets around user.
 
 This app focuses on scalable, flexible and reactive app architecure. It can even be "too much code" (e.g. dependency injection) for an app this size, but it is meant to be scaled well.
 
-I am using an MVVM with interactors as an additional layer to enhance re-usability. The app uses following frameworks
+It is a version of MVVM with interactors as an additional layer to enhance re-usability. The app uses following frameworks
 
 
 * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) (throughout the data layer; for thread switching)
