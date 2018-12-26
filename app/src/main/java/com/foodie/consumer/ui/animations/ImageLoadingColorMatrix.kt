@@ -43,7 +43,7 @@ class ImageLoadingColorMatrix : ColorMatrix() {
         set(value) {
             System.arraycopy(array, 0, elements, 0, 20)
 
-            // We substract to make the picture look darker, it will automatically clamp
+            // We subtract to make the picture look darker, it will automatically clamp
             val darkening = (1 - value) * MAX_DARKEN_PERCENTAGE * 255
             elements[4] = -darkening
             elements[9] = -darkening

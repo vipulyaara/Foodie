@@ -30,10 +30,6 @@ class FavoriteVenueViewModel : BaseViewModel<FavoriteVenueViewState>(FavoriteVen
             }
     }
 
-    fun updateFavorites() {
-        scope.launchInteractor(updateFavoriteVenues, UpdateFavoriteVenues.ExecuteParams(Unit))
-    }
-
     fun addToFavorites(venueId: String) {
         scope.launchInteractor(addToFavoriteVenues, AddToFavoriteVenues.Param(venueId))
     }

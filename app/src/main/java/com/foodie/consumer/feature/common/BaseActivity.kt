@@ -12,12 +12,4 @@ import androidx.appcompat.widget.Toolbar
 open class BaseActivity : AppCompatActivity() {
 
     private lateinit var appToolbar: Toolbar
-
-    fun setToolbar(toolbar: Toolbar) {
-        this.appToolbar = toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = ""
-    }
 }

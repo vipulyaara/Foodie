@@ -60,6 +60,5 @@
             app:layout_constraintStart_toStartOf="@+id/tvVenueName"
             app:layout_constraintTop_toBottomOf="@+id/tvVenueName"
             tools:text="Cannaught Palace" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
