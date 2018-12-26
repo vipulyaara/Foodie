@@ -13,6 +13,7 @@ import androidx.fragment.app.transaction
 import com.foodie.consumer.R
 import com.foodie.consumer.feature.common.BaseActivity
 import com.foodie.consumer.feature.detail.VenueDetailFragment
+import com.foodie.consumer.feature.favorites.FavoriteVenueFragment
 import com.foodie.consumer.feature.nearby.HomeFragment
 import com.foodie.consumer.ui.transition.SharedElementHelper
 import com.foodie.data.feature.location.LocationProvider
@@ -109,7 +110,7 @@ class MainActivity : BaseActivity() {
         sharedElements: SharedElementHelper?
     ) {
         supportFragmentManager?.transaction {
-            replace(
+            add(
                 R.id.fragmentContainer,
                 VenueDetailFragment().apply { arguments = bundleOf("venueId" to venueId) })
 
@@ -122,6 +123,17 @@ class MainActivity : BaseActivity() {
                     setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 }
             }
+        }
+    }
+
+    fun launchFavoritesFragment() {
+        supportFragmentManager?.transaction {
+            add(
+                R.id.fragmentContainer,
+                FavoriteVenueFragment()
+            )
+
+            addToBackStack("")
         }
     }
 }

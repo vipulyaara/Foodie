@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.foodie.consumer.R
 import com.foodie.consumer.databinding.FragmentListBinding
 import com.foodie.consumer.feature.common.DataBindingFragment
+import com.foodie.consumer.feature.main.MainActivity
 import com.foodie.data.entities.Entry
 import com.foodie.data.entities.EntryWithVenue
 import com.foodie.data.extensions.observeK
@@ -45,12 +46,18 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
 
         controller = createController()
         controller.callbacks = object : EntryEpoxyController.Callbacks<LI> {
-            override fun onItemFavorited(item: LI, markFavorite: Boolean) {
-                this@EntryFragment.onItemFavorited(item, markFavorite)
+            override fun onItemFavorited(venueId: String, markFavorite: Boolean) {
+                this@EntryFragment.onItemFavorited(venueId, markFavorite)
             }
 
             override fun onItemClicked(viewHolderId: Long, item: LI) {
                 this@EntryFragment.onItemClicked(viewHolderId, item)
+            }
+
+            override fun onSeeFavoriteClicked() {
+                if (activity is MainActivity) {
+                    (activity as MainActivity).launchFavoritesFragment()
+                }
             }
         }
     }
@@ -64,6 +71,7 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
         }
 
         viewModel.list.toLiveData().observeK(this) {
+            logger.d("EntryFragment pagedList updated")
             controller.submitList(it)
         }
 
@@ -81,7 +89,7 @@ abstract class EntryFragment<LI : EntryWithVenue<out Entry>,
 
     abstract fun onItemClicked(viewHolderId: Long, item: LI)
 
-    abstract fun onItemFavorited(item: LI, markFavorite: Boolean)
+    abstract fun onItemFavorited(venueId: String, markFavorite: Boolean)
 
     abstract fun createController(): EntryEpoxyController<LI>
 }

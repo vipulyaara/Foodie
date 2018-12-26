@@ -98,9 +98,6 @@ dependencies {
     implementation deps.glide
     implementation deps.glide_transformations
 
-//    debugImplementation deps.leakcanary.android
-//    debugImplementation deps.leakcanary.noop
-
     ktlint "com.github.shyiko:ktlint:0.28.0"
 
     implementation "com.airbnb.android:lottie:2.8.0"

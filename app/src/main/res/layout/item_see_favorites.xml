@@ -12,12 +12,12 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/spacing_medium"
         android:onClickListener="@{seeFavoritesListener}"
         app:cardBackgroundColor="#7540EE"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="@dimen/spacing_mini"
         app:cardElevation="1dp"
-        app:contentPadding="20dp"
+        app:contentPadding="@dimen/spacing_medium_3"
         app:strokeColor="#7540EE"
         app:strokeWidth="1dp">
 
@@ -27,45 +27,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/imageView"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/lottie_heart_2"
+                app:lottie_repeatCount="-1"
+                app:lottie_scale="2.0" />
+
             <TextView
                 android:id="@+id/tvHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="0.1"
                 android:text="@string/favorites"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp"
                 android:lineSpacingExtra="2dp"
                 android:text="@string/access_all_your_favorite_restaurants"
                 android:textColor="#88ffffff"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
                 app:layout_constraintStart_toStartOf="@id/tvHeading"
                 app:layout_constraintTop_toBottomOf="@id/tvHeading" />
-
-            <View
-                android:id="@+id/viewSep"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="24dp"
-                android:background="#44ffffff"
-                app:layout_constraintTop_toBottomOf="@id/tvText" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/go_to_favorites"
-                android:textAllCaps="true"
-                android:textColor="#00D95A"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewSep" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

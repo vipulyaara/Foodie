@@ -7,4 +7,4 @@ package com.foodie.data.annotations
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-public annotation class UseSingleton
+annotation class UseSingleton

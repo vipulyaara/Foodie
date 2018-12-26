@@ -42,11 +42,11 @@ class NearbyVenueFragment :
         }
     }
 
-    override fun onItemFavorited(item: NearbyEntryWithVenue, markFavorite: Boolean) {
+    override fun onItemFavorited(venueId: String, markFavorite: Boolean) {
         if (markFavorite) {
-            viewModel.addToFavorites(venueId = item.venue.venueId)
+            viewModel.addToFavorites(venueId = venueId)
         } else {
-            viewModel.removeFromFavorites(venueId = item.venue.venueId)
+            viewModel.removeFromFavorites(venueId = venueId)
         }
     }
 
@@ -61,8 +61,8 @@ class NearbyVenueFragment :
                     .venue(item.venue)
                     .isFavorite(item.favorite?.isNotEmpty())
                     .onclickListener(View.OnClickListener { callbacks?.onItemClicked(0, item) })
-                    .onFavoriteListener { _, _, _, _ ->
-                        callbacks?.onItemFavorited(item, item.favorite?.isNotEmpty() == false)
+                    .onFavoriteListener { model, _, _, _ ->
+                        callbacks?.onItemFavorited(model.venue().venueId, !model.isFavorite)
                     }
             }
         }

@@ -3,8 +3,10 @@ package com.foodie.consumer.feature.entry
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging.PagedListEpoxyController
 import com.foodie.consumer.ItemVenueBindingModel_
+import com.foodie.consumer.itemEmptyState
 import com.foodie.consumer.itemLoader
 import com.foodie.consumer.itemNearbyHeader
+import com.foodie.consumer.itemSeeFavorites
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.Logger
 import com.foodie.data.entities.Entry
@@ -24,10 +26,21 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
     }
 
     override fun addModels(models: List<EpoxyModel<*>>) {
-        itemNearbyHeader { id("nearby header") }
+        itemNearbyHeader {
+            id("nearby header")
+        }
+        itemSeeFavorites {
+            id("see-favorites")
+            seeFavoritesListener { _, _, _, _ ->
+                callbacks?.onSeeFavoriteClicked()
+            }
+        }
         super.addModels(models)
         logger.d("Loading $isLoading")
         if (isLoading) itemLoader { id("loader") }
+        if (models.isNullOrEmpty() && !isLoading) {
+            itemEmptyState { id("empty-state") }
+        }
     }
 
     internal var callbacks: Callbacks<LI>? = null
@@ -42,7 +55,8 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
 
     interface Callbacks<in LI> {
         fun onItemClicked(viewHolderId: Long, item: LI)
-        fun onItemFavorited(item: LI, markFavorite: Boolean)
+        fun onItemFavorited(venueId: String, markFavorite: Boolean)
+        fun onSeeFavoriteClicked()
     }
 
     abstract fun buildItemModel(position: Int, item: LI): ItemVenueBindingModel_

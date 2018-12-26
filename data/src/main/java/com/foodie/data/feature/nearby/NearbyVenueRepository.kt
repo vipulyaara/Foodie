@@ -4,7 +4,6 @@ import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.extensions.parallelForEach
 import com.foodie.data.feature.common.Repository
 import com.foodie.data.feature.entry.VenueRepository
-import com.foodie.data.feature.favorite.FavoriteVenueRepository
 import com.foodie.data.model.Success
 import org.kodein.di.generic.instance
 
@@ -18,7 +17,6 @@ class NearbyVenueRepository : Repository() {
     private val localVenueStore: LocalVenueStore by kodeinInstance.instance()
     private val entryDataSource: NearbyVenueDataSource by kodeinInstance.instance()
     private val venueRepository: VenueRepository by kodeinInstance.instance()
-    private val favoriteVenueRepository: FavoriteVenueRepository by kodeinInstance.instance()
 
     fun observeForPaging() = localNearbyVenueStore.observeForPaging()
 
@@ -27,14 +25,17 @@ class NearbyVenueRepository : Repository() {
 
     suspend fun loadNextPage(ll: String) {
         val lastPage = localNearbyVenueStore.getLastPage()
-        if (lastPage != null)
+        if (lastPage != null) {
+            logger.d("PAGE $lastPage")
             updateVenues(ll, lastPage + 1, false)
-        else
+        } else {
             refresh(ll)
+        }
     }
 
     suspend fun refresh(ll: String) {
-        updateVenues(ll, 0, false)
+        logger.d("REFRESH")
+        updateVenues(ll, 0, true)
     }
 
     private suspend fun updateVenues(

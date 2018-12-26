@@ -25,7 +25,7 @@ class NearbyEntryWithVenue : EntryWithVenue<NearbyVenueEntry> {
 
     override fun equals(other: Any?): Boolean = when {
         other === this -> true
-        other is NearbyEntryWithVenue -> entry == other.entry && venues == other.venues
+        other is NearbyEntryWithVenue -> entry == other.entry && venues == other.venues && favorite == other.favorite && blockedVenues == other.blockedVenues
         else -> false
     }
 

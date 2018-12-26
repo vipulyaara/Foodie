@@ -42,5 +42,16 @@ fun VenueDetailFromResponse.toVenueDetail() = VenueDetail(
     description = this.description,
     categories = this.categories,
     tip = this.tips?.groups?.map { it.items?.map { it.text } }?.get(0)?.get(0),
-    photo = this.bestPhoto?.run { "$prefix${width}x$height$suffix" }
+    photo = this.bestPhoto?.run { "$prefix${width}x$height$suffix" },
+    attributes = this.toAttributes()
 )
+
+fun VenueDetailFromResponse.toAttributes(): List<Attribute> {
+    val attributes = mutableListOf<Attribute>()
+    val list = this.attributes?.groups?.forEach {
+        it.items?.forEach {
+            attributes.add(Attribute(it.displayName, it.displayValue))
+        }
+    }
+    return attributes
+}

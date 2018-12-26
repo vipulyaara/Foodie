@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.TypedEpoxyController
 import com.foodie.consumer.ItemVenueBindingModel_
-import com.foodie.consumer.feature.main.MainActivity
 import com.foodie.consumer.R
 import com.foodie.consumer.databinding.FragmentFavoriteVenueBinding
 import com.foodie.consumer.feature.common.DataBindingFragment
+import com.foodie.consumer.feature.main.MainActivity
+import com.foodie.consumer.itemEmptyState
 import com.foodie.consumer.itemVenue
 import com.foodie.data.extensions.observeK
 
@@ -56,6 +57,8 @@ class FavoriteVenueFragment : DataBindingFragment<FragmentFavoriteVenueBinding>(
         viewModel.observableState.observeK(this) {
             controller.setData(it)
         }
+
+        binding.fabBack.setOnClickListener { activity?.onBackPressed() }
     }
 
     class FavoriteVenueController constructor(
@@ -63,6 +66,9 @@ class FavoriteVenueFragment : DataBindingFragment<FragmentFavoriteVenueBinding>(
     ) :
         TypedEpoxyController<FavoriteVenueViewState>() {
         override fun buildModels(data: FavoriteVenueViewState?) {
+            if (data?.favoriteVenues.isNullOrEmpty()) {
+                itemEmptyState { id("empty-state") }
+            }
             data?.favoriteVenues?.forEach { item ->
                 itemVenue {
                     id(item.generateStableId())

@@ -61,6 +61,7 @@ class VenueDetailFragment : DataBindingFragment<FragmentVenueDetailBinding>(
     }
 
     private fun initUi() {
+        binding.fabBack.setOnClickListener { activity?.onBackPressed() }
         binding.rvVenueDetail.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             setController(controller)

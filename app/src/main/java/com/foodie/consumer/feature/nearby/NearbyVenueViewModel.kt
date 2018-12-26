@@ -4,7 +4,6 @@ import com.foodie.consumer.feature.entry.EntryViewModel
 import com.foodie.consumer.feature.entry.EntryViewState
 import com.foodie.data.config.di.kodeinInstance
 import com.foodie.data.data.AppRxSchedulers
-import com.foodie.data.data.db.daos.FavoriteVenueEntryDao
 import com.foodie.data.entities.NearbyEntryWithVenue
 import com.foodie.data.feature.favorite.AddToFavoriteVenues
 import com.foodie.data.feature.favorite.RemoveFromFavoriteVenues
@@ -31,10 +30,9 @@ class NearbyVenueViewModel :
     private val updateFavoriteVenues: UpdateFavoriteVenues by kodeinInstance.instance()
     private val addToFavoriteVenues: AddToFavoriteVenues by kodeinInstance.instance()
     private val removeFromFavoriteVenues: RemoveFromFavoriteVenues by kodeinInstance.instance()
-    private val dao: FavoriteVenueEntryDao by kodeinInstance.instance()
 
     init {
-        dataSource = updateNearbyVenues.dataSourceFactory()
+        build(updateNearbyVenues.dataSourceFactory())
 
         disposables += updateFavoriteVenues.observe()
             .toObservable().subscribeOn(schedulers.io)
@@ -49,6 +47,7 @@ class NearbyVenueViewModel :
     }
 
     override suspend fun callLoadMore() = coroutineScope {
+        logger.d("ViewModel loadMore")
         launchInteractor(
             updateNearbyVenues,
             UpdateNearbyVenues.ExecuteParams(UpdateNearbyVenues.Page.NEXT_PAGE)

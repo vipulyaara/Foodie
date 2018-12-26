@@ -2,9 +2,12 @@ package com.foodie.consumer.feature.detail
 
 import com.airbnb.epoxy.TypedEpoxyController
 import com.foodie.consumer.ItemFavoriteVenueBindingModel_
+import com.foodie.consumer.itemAttribute
+import com.foodie.consumer.itemEmptyState
 import com.foodie.consumer.itemFooter
 import com.foodie.consumer.itemLoader
 import com.foodie.consumer.itemRowHeader
+import com.foodie.consumer.itemSeperator
 import com.foodie.consumer.itemTip
 import com.foodie.consumer.itemVenueDetail
 import com.foodie.consumer.ui.epoxy.carousel
@@ -29,6 +32,10 @@ class VenueDetailController constructor(
             itemLoader { id("loader") }
         }
 
+        if (data?.isLoading == false && data.venueDetail.isEmpty()) {
+            itemEmptyState { id("empty-state") }
+        }
+
         data?.venueDetail?.letEmpty { venueDetail ->
             itemVenueDetail {
                 id(venueDetail.venueId)
@@ -43,14 +50,22 @@ class VenueDetailController constructor(
                 }
             }
 
+            // add tips
             itemTip {
                 id("tip")
                 tip(venueDetail.tip)
             }
 
-//            data.venueDetail.attributes?.forEach {
-//                itemAttribute { id("it") }
-//            }
+            // add attributes
+            data.venueDetail.attributes?.forEach {
+                itemAttribute {
+                    id("it")
+                    key(it.key)
+                    value(it.value)
+                }
+            }
+
+            itemSeperator { id("separator") }
 
             if (data.favoriteVenues.isNotEmpty()) {
                 itemRowHeader {

@@ -11,7 +11,9 @@
         R.layout.item_footer,
         R.layout.item_tip,
         R.layout.item_review,
-        R.layout.item_attribute})
+        R.layout.item_attribute,
+        R.layout.item_empty_state,
+        R.layout.item_seperator})
 package com.foodie.consumer.ui.epoxy;
 
 import com.airbnb.epoxy.EpoxyDataBindingLayouts;

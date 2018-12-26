@@ -20,7 +20,7 @@
     <color name="background_sep">#f3f3f3</color>
 
     <color name="icon_tint">@color/grey_dropbox</color>
-    <color name="icon_tint_light">@color/grey_300</color>
+    <color name="icon_tint_light">#E8E9F5</color>
 
     <color name="separator_regular">@color/grey_sep</color>
 

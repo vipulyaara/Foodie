@@ -54,6 +54,8 @@ abstract class SubjectInteractor<P : Any, EP, T> : Interactor<EP> {
         setSource(createObservable(params))
     }
 
+    fun getParams() = params
+
     final override suspend fun invoke(executeParams: EP) {
         loading.onNext(true)
         execute(params, executeParams)

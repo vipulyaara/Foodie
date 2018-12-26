@@ -7,9 +7,6 @@ import com.foodie.data.entities.NearbyVenueEntry
 import com.foodie.data.entities.Venue
 import com.foodie.data.extensions.executeWithRetry
 import com.foodie.data.feature.common.DataSource
-import com.foodie.data.feature.common.api_section_food
-import com.foodie.data.feature.common.offset
-import com.foodie.data.feature.common.openNow
 import com.foodie.data.mapper.NearbyApiMapper
 import com.foodie.data.model.Result
 import org.kodein.di.generic.instance
@@ -19,7 +16,15 @@ import org.kodein.di.generic.instance
  *
  * Remote data source for nearby venues.
  */
+
+const val api_radius = 6000
+const val api_section_food = "food"
+const val api_nearby_count = 10
+const val openNow = 1
+
+fun offset(page: Int) = page * api_nearby_count
 class NearbyVenueDataSource : DataSource() {
+
     private val foodieApi: FoodieApi by kodeinInstance.instance()
     private val retrofitRunner: RetrofitRunner by kodeinInstance.instance()
     private val nearbyApiMapper: NearbyApiMapper by kodeinInstance.instance()
@@ -31,9 +36,9 @@ class NearbyVenueDataSource : DataSource() {
         return retrofitRunner.executeForResponse(nearbyApiMapper) {
             foodieApi.fetchNearbyVenues(
                 latLong = latLong,
-                radius = 6000,
+                radius = api_radius,
                 section = api_section_food,
-                count = 10,
+                count = api_nearby_count,
                 offset = offset(page),
                 openNow = openNow
             )

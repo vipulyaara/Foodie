@@ -41,6 +41,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                visibleInvisible="@{venue.venueId != null}"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_hero_2" />
         </com.google.android.material.card.MaterialCardView>
@@ -83,6 +84,7 @@
             android:layout_height="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="@dimen/spacing_regular"
+            visibleInvisible="@{venue.venueId != null}"
             android:background="?selectableItemBackgroundBorderless"
             android:onClickListener="@{onFavoriteListener}"
             android:padding="6dp"
