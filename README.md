@@ -22,3 +22,6 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 
 ### Improvements
 * Styling and theming are not as good as they should be. Also working on a scene using motion layout but could not complete it.
+* Not enough tests. Lack of time.
+
+Please help yourself with the app and the code. I would appreciate a thorough read of the code and would love to discuss the goods and bads of the architecture.
