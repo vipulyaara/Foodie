@@ -30,7 +30,9 @@ Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
 <img src="https://user-images.githubusercontent.com/6247940/50457454-a67aaf00-0981-11e9-91b3-4723b9d86f42.png" width="500">  |  <img src="https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png" width="500">
 
-<img src="https://user-images.githubusercontent.com/6247940/50457454-a67aaf00-0981-11e9-91b3-4723b9d86f42.png" width="500">
 
-<img src="https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png" width="500">
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+<img src="https://user-images.githubusercontent.com/6247940/50457625-d70f1880-0982-11e9-9db3-ad4ba2f2e41f.png" width="500">  |  <img src="https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png" width="500">
 
