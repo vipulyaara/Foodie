@@ -29,6 +29,8 @@ class VenueVenueRepository : Repository(), VenueRepository {
     }
 
     override fun needsUpdate(entryId: String): Boolean {
+        // update always;
+        // implement a sophisticated mechanism to figure out if a venue should be updated
         return true
     }
 

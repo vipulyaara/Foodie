@@ -9,5 +9,7 @@
     <string name="we_need_your_location">Permission required</string>
     <string name="grant_permission">Grant Permission</string>
     <string name="that_s_it_for_now">That\'s it for now!</string>
-    <string name="for_you_with_love_vipul_kumar">For you, with love. Vipul Kumar</string>
+    <string name="for_you_with_love_vipul_kumar">For Foodies! with love.</string>
+    <string name="near_you">Near You</string>
+    <string name="browse_tasty_restaurants_all_around_you">Browse tasty restaurants all around you</string>
 </resources>

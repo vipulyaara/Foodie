@@ -17,7 +17,6 @@ class LocalFavoriteVenueStore : LocalStore() {
     fun getFavoriteVenues(): List<FavoriteEntryWithVenue> =
         dao.getFavoriteVenues()
 
-
     fun addToFavorites(favoriteVenueEntry: FavoriteVenueEntry) {
         dao.insert(favoriteVenueEntry)
     }

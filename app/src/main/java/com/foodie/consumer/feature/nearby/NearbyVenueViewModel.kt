@@ -32,14 +32,11 @@ class NearbyVenueViewModel :
     private val removeFromFavoriteVenues: RemoveFromFavoriteVenues by kodeinInstance.instance()
 
     init {
-        build(updateNearbyVenues.dataSourceFactory())
+        dataSource = updateNearbyVenues.dataSourceFactory()
 
         disposables += updateFavoriteVenues.observe()
             .toObservable().subscribeOn(schedulers.io)
-            .execute {
-                logger.d("Favorite $it")
-                state
-            }
+            .execute { state }
     }
 
     fun setParams(params: UpdateNearbyVenues.Params) {

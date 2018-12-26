@@ -19,10 +19,11 @@ inline fun ImageView.loadImage(
     func:
     RequestManager.() -> RequestBuilder<Drawable>
 ) {
-    requestManager.func().apply(
-        RequestOptions()
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-    )
+    requestManager.func()
+        .apply(
+            RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+        )
         .transition(
             GenericTransitionOptions<Drawable>()
                 .transition(SaturationTransitionFactory())

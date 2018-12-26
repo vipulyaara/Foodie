@@ -19,8 +19,7 @@ interface FoodieApi {
         @Query("radius") radius: Int?,
         @Query("section") section: String?,
         @Query("limit") count: Int?,
-        @Query("offset") offset: Int?,
-        @Query("openNow") openNow: Int?
+        @Query("offset") offset: Int?
     ): Call<NearbyVenuesResponse>
 
     @GET("v2/venues/{venueId}")

@@ -14,9 +14,6 @@ class LocalBlockedVenueStore : LocalStore() {
     fun getBlockedVenuesFlowable(): Flowable<List<BlockedEntryWithVenue>> =
         dao.getBlockedVenuesFlowable()
 
-    fun getBlockedVenues(): List<BlockedEntryWithVenue> =
-        dao.getBlockedVenues()
-
     fun addToBlockedVenues(blockedVenueEntry: BlockedVenueEntry) {
         dao.insert(blockedVenueEntry)
     }

@@ -32,28 +32,25 @@ abstract class EntryViewModel<LI : EntryWithVenue<out Entry>, S : EntryViewState
     private val dispatchers: AppCoroutineDispatchers by kodeinInstance.instance()
     private val messages = BehaviorSubject.create<UiResource>()
 
-    private var dataSource: DataSource.Factory<Int, LI>? = null
-
     private val pageListConfig = PagedList.Config.Builder().run {
         setPageSize(pageSize * 3)
-//        setPrefetchDistance(pageSize)
         setEnablePlaceholders(false)
         build()
     }
 
     /** builds pagedList based on the data source */
-    fun build(dataSource: DataSource.Factory<Int, LI>) {
-        this.dataSource = dataSource
-        list = RxPagedListBuilder<Int, LI>(dataSource, pageListConfig)
-            .setBoundaryCallback(object : PagedList.BoundaryCallback<LI>() {
-                override fun onItemAtEndLoaded(itemAtEnd: LI) {
-                    logger.d("Item End $itemAtEnd")
-                    onListScrolledToEnd()
-                }
-            })
-            .buildFlowable(BackpressureStrategy.LATEST)
-            .distinctUntilChanged()
-    }
+    protected var dataSource: DataSource.Factory<Int, LI>? = null
+        set(value) {
+            list = RxPagedListBuilder<Int, LI>(value!!, pageListConfig)
+                .setBoundaryCallback(object : PagedList.BoundaryCallback<LI>() {
+                    override fun onItemAtEndLoaded(itemAtEnd: LI) {
+                        logger.d("Item End $itemAtEnd")
+                        onListScrolledToEnd()
+                    }
+                })
+                .buildFlowable(BackpressureStrategy.LATEST)
+                .distinctUntilChanged()
+        }
 
     lateinit var list: Flowable<PagedList<LI>>
 

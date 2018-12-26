@@ -12,9 +12,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Near You"
-            android:textSize="28sp"
+            android:text="@string/near_you"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
             android:id="@+id/tvHeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order from tasty nearby restaurants"
+            android:text="@string/browse_tasty_restaurants_all_around_you"
             app:layout_constraintStart_toStartOf="@+id/tvHeading"
             app:layout_constraintTop_toBottomOf="@+id/tvHeading" />
     </androidx.constraintlayout.widget.ConstraintLayout>

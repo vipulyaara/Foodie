@@ -8,9 +8,7 @@ import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx2.asObservable
 
 interface Interactor<in P> {
     val dispatcher: CoroutineDispatcher
@@ -19,22 +17,6 @@ interface Interactor<in P> {
 
 interface PagingInteractor<T> {
     fun dataSourceFactory(): DataSource.Factory<Int, T>
-}
-
-abstract class ChannelInteractor<P, T : Any> : Interactor<P> {
-    private val channel = Channel<T>()
-
-    final override suspend fun invoke(executeParams: P) {
-        channel.offer(execute(executeParams))
-    }
-
-    fun observe(): Flowable<T> = channel.asObservable(dispatcher).toFlowable()
-
-    protected abstract suspend fun execute(executeParams: P): T
-
-    fun clear() {
-        channel.close()
-    }
 }
 
 abstract class SubjectInteractor<P : Any, EP, T> : Interactor<EP> {

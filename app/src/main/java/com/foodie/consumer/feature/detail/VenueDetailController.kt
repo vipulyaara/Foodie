@@ -28,14 +28,18 @@ class VenueDetailController constructor(
     private val logger: Logger by kodeinInstance.instance()
 
     override fun buildModels(data: VenueDetailViewState?) {
+
+        // add loader
         if (data?.isLoading == true && data.venueDetail.isEmpty()) {
             itemLoader { id("loader") }
         }
 
+        // add empty layout
         if (data?.isLoading == false && data.venueDetail.isEmpty()) {
             itemEmptyState { id("empty-state") }
         }
 
+        // add detail view
         data?.venueDetail?.letEmpty { venueDetail ->
             itemVenueDetail {
                 id(venueDetail.venueId)

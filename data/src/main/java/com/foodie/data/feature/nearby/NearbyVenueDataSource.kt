@@ -16,11 +16,9 @@ import org.kodein.di.generic.instance
  *
  * Remote data source for nearby venues.
  */
-
-const val api_radius = 6000
+const val api_radius = 20000
 const val api_section_food = "food"
 const val api_nearby_count = 10
-const val openNow = 1
 
 fun offset(page: Int) = page * api_nearby_count
 class NearbyVenueDataSource : DataSource() {
@@ -39,8 +37,7 @@ class NearbyVenueDataSource : DataSource() {
                 radius = api_radius,
                 section = api_section_food,
                 count = api_nearby_count,
-                offset = offset(page),
-                openNow = openNow
+                offset = offset(page)
             )
                 .executeWithRetry()
         }

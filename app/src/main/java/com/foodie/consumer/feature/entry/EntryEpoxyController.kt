@@ -26,18 +26,19 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
     }
 
     override fun addModels(models: List<EpoxyModel<*>>) {
-        itemNearbyHeader {
-            id("nearby header")
-        }
+        itemNearbyHeader { id("nearby-header") }
+
         itemSeeFavorites {
             id("see-favorites")
             seeFavoritesListener { _, _, _, _ ->
                 callbacks?.onSeeFavoriteClicked()
             }
         }
+
         super.addModels(models)
-        logger.d("Loading $isLoading")
+
         if (isLoading) itemLoader { id("loader") }
+
         if (models.isNullOrEmpty() && !isLoading) {
             itemEmptyState { id("empty-state") }
         }
@@ -45,7 +46,7 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
 
     internal var callbacks: Callbacks<LI>? = null
 
-    var isLoading = false
+    var isLoading = true
         set(value) {
             if (value != field) {
                 field = value

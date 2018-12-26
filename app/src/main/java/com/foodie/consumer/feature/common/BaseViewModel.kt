@@ -17,6 +17,14 @@ import org.kodein.di.generic.instance
  *
  * ViewModel which exposes a [CompositeDisposable] and [Job]
  * which are automatically cleared/stopped when the ViewModel is cleared.
+ *
+ * Ideally, a code that triggers a change in viewState looks like
+ *
+ * flowable.toObservable()
+ * .subscribeOn(schedulers.io)
+ * .execute { state }
+ *
+ * the fragments can then observe [observableState] and listen to any changes.
  */
 open class BaseViewModel<S : BaseViewState>(
     var state: S

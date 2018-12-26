@@ -1,7 +1,6 @@
 package com.foodie.consumer.feature.nearby
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import com.foodie.consumer.ItemVenueBindingModel_
 import com.foodie.consumer.extensions.roundOffTo
@@ -72,7 +71,7 @@ class NearbyVenueFragment :
         super.onViewCreated(view, savedInstanceState)
         locationProvider.locationLiveData.observeK(this) { resource ->
             // delay to prevent flashes of progress bar on screen
-            Handler().postDelayed({ controller.isLoading = true }, 300)
+            controller.isLoading = true
             resource?.let { location ->
                 locationProvider.stopLocationUpdates()
                 viewModel.setParams(

@@ -81,9 +81,9 @@ class LocationProvider(val application: Application) {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
-    fun createLocationRequest() = LocationRequest.create().apply {
+    private fun createLocationRequest() = LocationRequest.create().apply {
         interval = 10000
         fastestInterval = 5000
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-    }
+    }!!
 }

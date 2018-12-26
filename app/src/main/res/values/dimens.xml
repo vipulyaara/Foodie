@@ -1,8 +1,4 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="ui_uber_progress_bar_height">4dp</dimen>
-
     <dimen name="fab_width">56dp</dimen>
     <dimen name="fab_height">56dp</dimen>
     <dimen name="fab_elevation">4dp</dimen>
@@ -53,12 +49,4 @@
 
     <dimen name="sep_regular">0.7dp</dimen>
     <dimen name="sep_dark">1dp</dimen>
-
-    <dimen name="expense_item_width">96dp</dimen>
-    <dimen name="expense_item_height">96dp</dimen>
-    <dimen name="vertical_divider_width">1dp</dimen>
-    <dimen name="progress_bar_size">32dp</dimen>
-    <dimen name="toolbar_shadow_height">3dp</dimen>
-
-    <dimen name="padding_under_lists">0dp</dimen>
 </resources>

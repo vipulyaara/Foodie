@@ -26,7 +26,6 @@ class NearbyVenueRepository : Repository() {
     suspend fun loadNextPage(ll: String) {
         val lastPage = localNearbyVenueStore.getLastPage()
         if (lastPage != null) {
-            logger.d("PAGE $lastPage")
             updateVenues(ll, lastPage + 1, false)
         } else {
             refresh(ll)
@@ -34,7 +33,6 @@ class NearbyVenueRepository : Repository() {
     }
 
     suspend fun refresh(ll: String) {
-        logger.d("REFRESH")
         updateVenues(ll, 0, true)
     }
 
