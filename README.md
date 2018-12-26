@@ -4,7 +4,7 @@ Demo application to show food outlets around user.
 
 ## Architecture
 
-The architecture is built detailed and modular as possible. It scaled well during the development and it can scale well while adding new features. It can even be too-much-code (e.g. dependency injection) for an app this size, but it is meant to be scaled well.
+This app focuses on scalable, flexible and reactive app architecure. It can even be "too much code" (e.g. dependency injection) for an app this size, but it is meant to be scaled well.
 
 I am using an MVVM with interactors as an additional layer to enhance re-usability. The app uses following frameworks
 
