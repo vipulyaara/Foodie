@@ -26,9 +26,7 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 
 Please help yourself with the app and the code. I would appreciate a thorough read of the code and would love to discuss the goods and bads of the architecture.
 
-<img src="https://user-images.githubusercontent.com/6247940/50457454-a67aaf00-0981-11e9-91b3-4723b9d86f42.png" width="48">
+<img src="https://user-images.githubusercontent.com/6247940/50457454-a67aaf00-0981-11e9-91b3-4723b9d86f42.png" width="200">
 
-![screenshot_20181227-023530](https://user-images.githubusercontent.com/6247940/50457454-a67aaf00-0981-11e9-91b3-4723b9d86f42.png | width=100)
-
-![screenshot_20181226-151552](https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png | width=200)
+<img src="https://user-images.githubusercontent.com/6247940/50457472-c1e5ba00-0981-11e9-9831-d19e5a31e319.png" width="200">
 
