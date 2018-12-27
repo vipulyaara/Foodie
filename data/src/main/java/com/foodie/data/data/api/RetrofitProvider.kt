@@ -11,6 +11,8 @@ import java.util.concurrent.TimeUnit
  * Authored by vipulkumar on 21/12/18.
  *
  * Utility to provide instances of [Retrofit] and [OkHttpClient].
+ *
+ * //TODO: Secure api keys using [com.foodie.consumer.config.ApiKeyStore]
  */
 
 object RetrofitProvider {

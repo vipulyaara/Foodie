@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@{venue.name}"
+            android:letterSpacing="0.05"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toStartOf="@id/ivFavorite"
             app:layout_constraintStart_toEndOf="@+id/imageView"
