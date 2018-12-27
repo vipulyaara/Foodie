@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.foodie.consumer.R
 import com.foodie.consumer.databinding.FragmentVenueDetailBinding
 import com.foodie.consumer.feature.common.DataBindingFragment
+import com.foodie.consumer.feature.main.MainActivity
 import com.foodie.data.extensions.observeK
 
 /**
@@ -34,6 +35,12 @@ class VenueDetailFragment : DataBindingFragment<FragmentVenueDetailBinding>(
                 viewModel.addToFavorites(venueId)
             } else {
                 viewModel.removeFromFavorites(venueId)
+            }
+        }
+
+        override fun onItemClicked(venueId: String) {
+            if (activity is MainActivity) {
+                (activity as MainActivity).launchDetailFragment(venueId, null)
             }
         }
     })

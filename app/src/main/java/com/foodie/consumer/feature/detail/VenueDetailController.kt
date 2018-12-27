@@ -82,6 +82,7 @@ class VenueDetailController constructor(
                         ItemFavoriteVenueBindingModel_()
                             .id(it.venue.venueId)
                             .venue(it.venue)
+
                     }
                 }
             }
@@ -93,5 +94,6 @@ class VenueDetailController constructor(
     interface Callbacks {
         fun onItemBlocked(venueId: String, markBlocked: Boolean)
         fun onItemFavorited(venueId: String, markFavorite: Boolean)
+        fun onItemClicked(venueId: String)
     }
 }

@@ -8,11 +8,16 @@
         <variable
             name="venue"
             type="com.foodie.data.entities.Venue" />
+
+        <variable
+            name="onclickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClickListener="@{onclickListener}"
         android:padding="@dimen/spacing_medium">
 
         <com.google.android.material.card.MaterialCardView
