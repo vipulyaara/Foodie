@@ -35,7 +35,13 @@ abstract class EntryEpoxyController<LI : EntryWithVenue<out Entry>> :
             }
         }
 
-        super.addModels(models)
+        super.addModels(models.filterNot { model ->
+            if (model is ItemVenueBindingModel_) {
+                model.isBlocked
+            } else {
+                false
+            }
+        })
 
         if (isLoading) itemLoader { id("loader") }
 

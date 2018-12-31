@@ -15,16 +15,19 @@ import java.util.concurrent.TimeUnit
  * //TODO: Secure api keys using [com.foodie.consumer.config.ApiKeyStore]
  */
 
+const val clientId = "BMU2CX5FMPRDWRSETYCGXTCY5OMQ4XGATLEHEDEIX0JLUXGK"
+const val clientSecret = "JM5OXWUU14LMCXVWN0SNJOVMZDPDD43F0XGVZTP4ETKBIQE2"
+
 object RetrofitProvider {
     private val genericInterceptor: Interceptor
         get() = Interceptor { chain ->
             val original = chain.request()
 
             val url = original.url().newBuilder()
-                .addQueryParameter("client_id", "BMU2CX5FMPRDWRSETYCGXTCY5OMQ4XGATLEHEDEIX0JLUXGK")
+                .addQueryParameter("client_id", clientId)
                 .addQueryParameter(
                     "client_secret",
-                    "JM5OXWUU14LMCXVWN0SNJOVMZDPDD43F0XGVZTP4ETKBIQE2"
+                    clientSecret
                 )
                 .addQueryParameter("v", "20180323")
                 .build()

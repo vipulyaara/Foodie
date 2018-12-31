@@ -59,6 +59,7 @@ class NearbyVenueFragment :
                     .id(item.generateStableId())
                     .venue(item.venue)
                     .isFavorite(item.favorite?.isNotEmpty())
+                    .isBlocked(item.blockedVenues?.isNotEmpty())
                     .onclickListener(View.OnClickListener { callbacks?.onItemClicked(0, item) })
                     .onFavoriteListener { model, _, _, _ ->
                         callbacks?.onItemFavorited(model.venue().venueId, !model.isFavorite)
