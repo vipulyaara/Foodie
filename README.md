@@ -20,7 +20,7 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 * [Klint](https://github.com/shyiko/ktlint) (code formatter for Kotlin)
 
 
-![final-architecture](https://user-images.githubusercontent.com/6247940/50457712-c317e680-0983-11e9-8dda-5b0f614abeb9.png)
+![final-architecture](https://user-images.githubusercontent.com/6247940/50480774-0e71d980-0a04-11e9-90fc-89c9fdfb4115.png)
 
 
 ### TODOs
