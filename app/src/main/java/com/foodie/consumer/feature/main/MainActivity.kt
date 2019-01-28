@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        supportFragmentManager.commit { replace(R.id.fragmentContainer, MotionLayoutFragment()) }
         checkForPermission()
     }
 
@@ -63,7 +64,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initUi() {
-        supportFragmentManager?.transaction {
+        supportFragmentManager.transaction {
             replace(R.id.fragmentContainer, HomeFragment())
         }
     }
@@ -110,7 +111,7 @@ class MainActivity : BaseActivity() {
         venueId: String,
         sharedElements: SharedElementHelper?
     ) {
-        supportFragmentManager?.transaction {
+        supportFragmentManager.transaction {
             add(
                 R.id.fragmentContainer,
                 VenueDetailFragment().apply { arguments = bundleOf("venueId" to venueId) })
@@ -128,7 +129,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun launchFavoritesFragment() {
-        supportFragmentManager?.transaction {
+        supportFragmentManager.transaction {
             add(
                 R.id.fragmentContainer,
                 FavoriteVenueFragment()

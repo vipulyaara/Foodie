@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/collapsed"
+        app:constraintSetStart="@id/expanded">
+
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@id/rvMotion"
+            app:touchAnchorSide="top" />
+
+    </Transition>
+
+    <!-- Original State/ Scroll down-->
+    <ConstraintSet android:id="@+id/expanded">
+        <Constraint
+            android:id="@id/headerFrame"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/app_blue_retro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNew">
+
+            <CustomAttribute
+                app:attributeName="translationY"
+                app:customDimension="0dp" />
+
+        </Constraint>
+    </ConstraintSet>
+
+    <!-- Modified State/ Scroll Up-->
+    <ConstraintSet android:id="@+id/collapsed">
+
+        <Constraint
+            android:id="@id/headerFrame"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@color/app_blue_retro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNew">
+
+            <CustomAttribute
+                app:attributeName="translationY"
+                app:customDimension="-200dp" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
