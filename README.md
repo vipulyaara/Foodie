@@ -1,4 +1,4 @@
-# Upcoming project
+# Upcoming project - Kafka
 An app for browsing, reading, or listening to (audio)books.
 
 
