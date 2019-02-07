@@ -35,7 +35,7 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 
 
 ### TODOs
-* Styling and theming are not as good as they should be. Also working on a scene using motion layout but could not complete it.
+* Styling and theming are not as good as they should be. Also working on a scene using motion layout.
 
 </br></br>
 
